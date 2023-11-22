@@ -1,36 +1,71 @@
-//
-//  AppDelegate.swift
-//  Palmy
-//
-//  Created by Kirill Pukhov on 12.11.23.
-//
-
 import UIKit
+import OSLog
+import FirebaseCore
+import FirebaseAuth
+import FirebaseFirestore
+import WebRTC
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+    var user: User?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        RTCInitFieldTrialDictionary([:])
+        RTCInitializeSSL()
+        RTCSetMinDebugLogLevel(RTCLoggingSeverity.warning)
+
+        FirebaseApp.configure()
+
+        Auth.auth().signInAnonymously { authResult, error in
+            guard let authResult = authResult, error == nil else {
+                if let error = error {
+                    Logger.general.error("\(error.localizedDescription)")
+                }
+
+                return
+            }
+
+            let firestore = Firestore.firestore()
+            let usersCollectionRef = firestore.collection("users")
+            let userDocumentRef = usersCollectionRef.document(authResult.user.uid)
+            userDocumentRef.getDocument { [weak self] documentSnapshot, error in
+                guard let documentSnapshot = documentSnapshot, error == nil else {
+                    if let error = error {
+                        Logger.general.error("\(error.localizedDescription)")
+                    }
+
+                    return
+                }
+
+                if documentSnapshot.exists {
+                    do {
+                        self?.user = try documentSnapshot.data(as: User.self)
+                    } catch {
+                        Logger.general.error("\(error.localizedDescription)")
+                    }
+                } else {
+                    self?.user = User(id: authResult.user.uid)
+
+                    do {
+                        guard let user = self?.user else { fatalError() }
+
+                        try userDocumentRef.setData(from: user)
+                    } catch {
+                        Logger.general.error("\(error.localizedDescription)")
+                    }
+                }
+            }
+        }
+
         return true
     }
 
-    // MARK: UISceneSession Lifecycle
+    func applicationWillTerminate(_ application: UIApplication) {
+        RTCShutdownInternalTracer()
+        RTCCleanupSSL()
+    }
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
-
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-    }
-
-
 }
-

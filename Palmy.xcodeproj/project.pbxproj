@@ -7,23 +7,76 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D619539D2B090B70008105C6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D619539C2B090B70008105C6 /* SnapKit */; };
+		D628EAFC2B0DB7D500DD2C52 /* foreman.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D628EAFB2B0DB7D500DD2C52 /* foreman.mp4 */; };
+		D62B49BB2B076CAD00A0CF85 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B49BA2B076CAD00A0CF85 /* User.swift */; };
+		D63540F22B07DECB00A46AAE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D63540F12B07DECB00A46AAE /* FirebaseAuth */; };
+		D68622C92B08A8550083943C /* WebRTC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68622C72B08A84F0083943C /* WebRTC.xcframework */; };
+		D68622CA2B08A8550083943C /* WebRTC.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D68622C72B08A84F0083943C /* WebRTC.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D68622CE2B08CE420083943C /* AlertKit in Frameworks */ = {isa = PBXBuildFile; productRef = D68622CD2B08CE420083943C /* AlertKit */; };
+		D69722BE2B0B7029005B3DA1 /* MainToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69722BD2B0B7029005B3DA1 /* MainToolBarView.swift */; };
+		D6A47EB02B04FD1F00010B6A /* CallInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A47EAF2B04FD1F00010B6A /* CallInfoViewController.swift */; };
+		D6A49DFA2B078939003DFF05 /* usernames.json in Resources */ = {isa = PBXBuildFile; fileRef = D6A49DF92B078939003DFF05 /* usernames.json */; };
+		D6A49DFC2B078B2F003DFF05 /* emails.json in Resources */ = {isa = PBXBuildFile; fileRef = D6A49DFB2B078B2F003DFF05 /* emails.json */; };
+		D6D1BC172B014AE400BC86AB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6D1BC162B014AE400BC86AB /* GoogleService-Info.plist */; };
+		D6D389F62B094DD0006CA941 /* VideoCaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D389F52B094DD0006CA941 /* VideoCaptureController.swift */; };
+		D6D389F82B094E60006CA941 /* CameraVideoCaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D389F72B094E60006CA941 /* CameraVideoCaptureController.swift */; };
+		D6D389FA2B094EF1006CA941 /* FileVideoCaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D389F92B094EF1006CA941 /* FileVideoCaptureController.swift */; };
+		D6D952082B0CEB1C0061401A /* Logger+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D952072B0CEB1C0061401A /* Logger+Extensions.swift */; };
 		D6F7A8CF2B00E0EF009262CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F7A8CE2B00E0EF009262CD /* AppDelegate.swift */; };
 		D6F7A8D12B00E0EF009262CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F7A8D02B00E0EF009262CD /* SceneDelegate.swift */; };
-		D6F7A8D32B00E0EF009262CD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F7A8D22B00E0EF009262CD /* ViewController.swift */; };
-		D6F7A8D62B00E0EF009262CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6F7A8D42B00E0EF009262CD /* Main.storyboard */; };
+		D6F7A8D32B00E0EF009262CD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F7A8D22B00E0EF009262CD /* MainViewController.swift */; };
 		D6F7A8D82B00E0F0009262CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6F7A8D72B00E0F0009262CD /* Assets.xcassets */; };
 		D6F7A8DB2B00E0F0009262CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6F7A8D92B00E0F0009262CD /* LaunchScreen.storyboard */; };
+		D6F7A91C2B00F326009262CD /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D6F7A91B2B00F326009262CD /* FirebaseFirestore */; };
+		D6FD7F852B09FDFC00A7F832 /* SignalingServerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FD7F842B09FDFC00A7F832 /* SignalingServerSession.swift */; };
+		D6FD7F872B09FFE300A7F832 /* FirestoreSignalingServerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FD7F862B09FFE300A7F832 /* FirestoreSignalingServerSession.swift */; };
+		D6FD7F892B0A01C000A7F832 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FD7F882B0A01C000A7F832 /* Room.swift */; };
+		D6FD7F8B2B0A01E500A7F832 /* SignalingServerMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FD7F8A2B0A01E500A7F832 /* SignalingServerMessage.swift */; };
+		D6FD7F8D2B0A225300A7F832 /* WebRTCSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FD7F8C2B0A225200A7F832 /* WebRTCSession.swift */; };
+		D6FD7F8F2B0A270500A7F832 /* PeerConnectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FD7F8E2B0A270500A7F832 /* PeerConnectionDelegate.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D68622CB2B08A8550083943C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D68622CA2B08A8550083943C /* WebRTC.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		D628EAFB2B0DB7D500DD2C52 /* foreman.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = foreman.mp4; sourceTree = "<group>"; };
+		D62B49BA2B076CAD00A0CF85 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D68622C72B08A84F0083943C /* WebRTC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = WebRTC.xcframework; sourceTree = "<group>"; };
+		D69722BD2B0B7029005B3DA1 /* MainToolBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainToolBarView.swift; sourceTree = "<group>"; };
+		D6A47EAF2B04FD1F00010B6A /* CallInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallInfoViewController.swift; sourceTree = "<group>"; };
+		D6A49DF92B078939003DFF05 /* usernames.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = usernames.json; sourceTree = "<group>"; };
+		D6A49DFB2B078B2F003DFF05 /* emails.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = emails.json; sourceTree = "<group>"; };
+		D6D1BC162B014AE400BC86AB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D6D389F52B094DD0006CA941 /* VideoCaptureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCaptureController.swift; sourceTree = "<group>"; };
+		D6D389F72B094E60006CA941 /* CameraVideoCaptureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVideoCaptureController.swift; sourceTree = "<group>"; };
+		D6D389F92B094EF1006CA941 /* FileVideoCaptureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileVideoCaptureController.swift; sourceTree = "<group>"; };
+		D6D952072B0CEB1C0061401A /* Logger+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Logger+Extensions.swift"; path = "Palmy/Extensions/Logger+Extensions.swift"; sourceTree = SOURCE_ROOT; };
 		D6F7A8CB2B00E0EF009262CD /* Palmy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Palmy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F7A8CE2B00E0EF009262CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6F7A8D02B00E0EF009262CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D6F7A8D22B00E0EF009262CD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D6F7A8D52B00E0EF009262CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D6F7A8D22B00E0EF009262CD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D6F7A8D72B00E0F0009262CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D6F7A8DA2B00E0F0009262CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D6F7A8DC2B00E0F0009262CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D6FD7F842B09FDFC00A7F832 /* SignalingServerSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalingServerSession.swift; sourceTree = "<group>"; };
+		D6FD7F862B09FFE300A7F832 /* FirestoreSignalingServerSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreSignalingServerSession.swift; sourceTree = "<group>"; };
+		D6FD7F882B0A01C000A7F832 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		D6FD7F8A2B0A01E500A7F832 /* SignalingServerMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalingServerMessage.swift; sourceTree = "<group>"; };
+		D6FD7F8C2B0A225200A7F832 /* WebRTCSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCSession.swift; sourceTree = "<group>"; };
+		D6FD7F8E2B0A270500A7F832 /* PeerConnectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerConnectionDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +84,52 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D68622CE2B08CE420083943C /* AlertKit in Frameworks */,
+				D6F7A91C2B00F326009262CD /* FirebaseFirestore in Frameworks */,
+				D63540F22B07DECB00A46AAE /* FirebaseAuth in Frameworks */,
+				D68622C92B08A8550083943C /* WebRTC.xcframework in Frameworks */,
+				D619539D2B090B70008105C6 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D62B49BE2B07756B00A0CF85 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D6FD7F842B09FDFC00A7F832 /* SignalingServerSession.swift */,
+				D6FD7F862B09FFE300A7F832 /* FirestoreSignalingServerSession.swift */,
+				D6FD7F8C2B0A225200A7F832 /* WebRTCSession.swift */,
+				D6FD7F8E2B0A270500A7F832 /* PeerConnectionDelegate.swift */,
+				D6FD7F8A2B0A01E500A7F832 /* SignalingServerMessage.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D62B49BF2B07757A00A0CF85 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D62B49BA2B076CAD00A0CF85 /* User.swift */,
+				D6FD7F882B0A01C000A7F832 /* Room.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D6D952092B0CEB3C0061401A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D6D952072B0CEB1C0061401A /* Logger+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		D6F7A8C22B00E0EF009262CD = {
 			isa = PBXGroup;
 			children = (
 				D6F7A8CD2B00E0EF009262CD /* Palmy */,
 				D6F7A8CC2B00E0EF009262CD /* Products */,
+				D6F7A91A2B00F326009262CD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +144,34 @@
 		D6F7A8CD2B00E0EF009262CD /* Palmy */ = {
 			isa = PBXGroup;
 			children = (
+				D62B49BF2B07757A00A0CF85 /* Models */,
+				D62B49BE2B07756B00A0CF85 /* Services */,
 				D6F7A8CE2B00E0EF009262CD /* AppDelegate.swift */,
 				D6F7A8D02B00E0EF009262CD /* SceneDelegate.swift */,
-				D6F7A8D22B00E0EF009262CD /* ViewController.swift */,
-				D6F7A8D42B00E0EF009262CD /* Main.storyboard */,
+				D6F7A8D22B00E0EF009262CD /* MainViewController.swift */,
+				D69722BD2B0B7029005B3DA1 /* MainToolBarView.swift */,
+				D6A47EAF2B04FD1F00010B6A /* CallInfoViewController.swift */,
+				D6D389F52B094DD0006CA941 /* VideoCaptureController.swift */,
+				D6D389F72B094E60006CA941 /* CameraVideoCaptureController.swift */,
+				D6D389F92B094EF1006CA941 /* FileVideoCaptureController.swift */,
+				D6D952092B0CEB3C0061401A /* Extensions */,
+				D628EAFB2B0DB7D500DD2C52 /* foreman.mp4 */,
+				D6A49DF92B078939003DFF05 /* usernames.json */,
+				D6A49DFB2B078B2F003DFF05 /* emails.json */,
 				D6F7A8D72B00E0F0009262CD /* Assets.xcassets */,
 				D6F7A8D92B00E0F0009262CD /* LaunchScreen.storyboard */,
 				D6F7A8DC2B00E0F0009262CD /* Info.plist */,
+				D6D1BC162B014AE400BC86AB /* GoogleService-Info.plist */,
 			);
 			path = Palmy;
+			sourceTree = "<group>";
+		};
+		D6F7A91A2B00F326009262CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D68622C72B08A84F0083943C /* WebRTC.xcframework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,12 +184,19 @@
 				D6F7A8C72B00E0EF009262CD /* Sources */,
 				D6F7A8C82B00E0EF009262CD /* Frameworks */,
 				D6F7A8C92B00E0EF009262CD /* Resources */,
+				D68622CB2B08A8550083943C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Palmy;
+			packageProductDependencies = (
+				D6F7A91B2B00F326009262CD /* FirebaseFirestore */,
+				D63540F12B07DECB00A46AAE /* FirebaseAuth */,
+				D68622CD2B08CE420083943C /* AlertKit */,
+				D619539C2B090B70008105C6 /* SnapKit */,
+			);
 			productName = Palmy;
 			productReference = D6F7A8CB2B00E0EF009262CD /* Palmy.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +225,11 @@
 				Base,
 			);
 			mainGroup = D6F7A8C22B00E0EF009262CD;
+			packageReferences = (
+				D6F7A8F22B00EE89009262CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				D68622CC2B08CE420083943C /* XCRemoteSwiftPackageReference "AlertKit" */,
+				D619539B2B090B70008105C6 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = D6F7A8CC2B00E0EF009262CD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,9 +244,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6A49DFC2B078B2F003DFF05 /* emails.json in Resources */,
 				D6F7A8DB2B00E0F0009262CD /* LaunchScreen.storyboard in Resources */,
 				D6F7A8D82B00E0F0009262CD /* Assets.xcassets in Resources */,
-				D6F7A8D62B00E0EF009262CD /* Main.storyboard in Resources */,
+				D6A49DFA2B078939003DFF05 /* usernames.json in Resources */,
+				D628EAFC2B0DB7D500DD2C52 /* foreman.mp4 in Resources */,
+				D6D1BC172B014AE400BC86AB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +260,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6F7A8D32B00E0EF009262CD /* ViewController.swift in Sources */,
+				D6D389FA2B094EF1006CA941 /* FileVideoCaptureController.swift in Sources */,
+				D6D389F62B094DD0006CA941 /* VideoCaptureController.swift in Sources */,
+				D6F7A8D32B00E0EF009262CD /* MainViewController.swift in Sources */,
+				D69722BE2B0B7029005B3DA1 /* MainToolBarView.swift in Sources */,
+				D6FD7F8D2B0A225300A7F832 /* WebRTCSession.swift in Sources */,
+				D6FD7F8F2B0A270500A7F832 /* PeerConnectionDelegate.swift in Sources */,
+				D6D952082B0CEB1C0061401A /* Logger+Extensions.swift in Sources */,
 				D6F7A8CF2B00E0EF009262CD /* AppDelegate.swift in Sources */,
+				D6FD7F872B09FFE300A7F832 /* FirestoreSignalingServerSession.swift in Sources */,
+				D6FD7F852B09FDFC00A7F832 /* SignalingServerSession.swift in Sources */,
+				D62B49BB2B076CAD00A0CF85 /* User.swift in Sources */,
+				D6D389F82B094E60006CA941 /* CameraVideoCaptureController.swift in Sources */,
+				D6A47EB02B04FD1F00010B6A /* CallInfoViewController.swift in Sources */,
 				D6F7A8D12B00E0EF009262CD /* SceneDelegate.swift in Sources */,
+				D6FD7F892B0A01C000A7F832 /* Room.swift in Sources */,
+				D6FD7F8B2B0A01E500A7F832 /* SignalingServerMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D6F7A8D42B00E0EF009262CD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D6F7A8D52B00E0EF009262CD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D6F7A8D92B00E0F0009262CD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -218,7 +345,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -275,7 +401,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -293,20 +418,32 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6797TRSMCN;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Palmy/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Palmy;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Palmy needs to access your camera";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Palmy needs to access your microphone";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kirillupkhov2004.Palmy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kirillpukhov2004.Palmy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -321,20 +458,32 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6797TRSMCN;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Palmy/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Palmy;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Palmy needs to access your camera";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Palmy needs to access your microphone";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kirillupkhov2004.Palmy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kirillpukhov2004.Palmy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -363,6 +512,56 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D619539B2B090B70008105C6 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+		D68622CC2B08CE420083943C /* XCRemoteSwiftPackageReference "AlertKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparrowcode/AlertKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.8;
+			};
+		};
+		D6F7A8F22B00EE89009262CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.17.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D619539C2B090B70008105C6 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D619539B2B090B70008105C6 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		D63540F12B07DECB00A46AAE /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6F7A8F22B00EE89009262CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		D68622CD2B08CE420083943C /* AlertKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D68622CC2B08CE420083943C /* XCRemoteSwiftPackageReference "AlertKit" */;
+			productName = AlertKit;
+		};
+		D6F7A91B2B00F326009262CD /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6F7A8F22B00EE89009262CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D6F7A8C32B00E0EF009262CD /* Project object */;
 }
