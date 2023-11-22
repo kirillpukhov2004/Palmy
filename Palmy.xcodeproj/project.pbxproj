@@ -22,6 +22,8 @@
 		D6D389F62B094DD0006CA941 /* VideoCaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D389F52B094DD0006CA941 /* VideoCaptureController.swift */; };
 		D6D389F82B094E60006CA941 /* CameraVideoCaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D389F72B094E60006CA941 /* CameraVideoCaptureController.swift */; };
 		D6D389FA2B094EF1006CA941 /* FileVideoCaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D389F92B094EF1006CA941 /* FileVideoCaptureController.swift */; };
+		D6D8D0662B0E820700E26735 /* WebRTCSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D8D0652B0E820700E26735 /* WebRTCSessionDelegate.swift */; };
+		D6D8D0682B0E846500E26735 /* SignalingServerSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D8D0672B0E846500E26735 /* SignalingServerSessionDelegate.swift */; };
 		D6D952082B0CEB1C0061401A /* Logger+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D952072B0CEB1C0061401A /* Logger+Extensions.swift */; };
 		D6F7A8CF2B00E0EF009262CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F7A8CE2B00E0EF009262CD /* AppDelegate.swift */; };
 		D6F7A8D12B00E0EF009262CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F7A8D02B00E0EF009262CD /* SceneDelegate.swift */; };
@@ -34,7 +36,6 @@
 		D6FD7F892B0A01C000A7F832 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FD7F882B0A01C000A7F832 /* Room.swift */; };
 		D6FD7F8B2B0A01E500A7F832 /* SignalingServerMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FD7F8A2B0A01E500A7F832 /* SignalingServerMessage.swift */; };
 		D6FD7F8D2B0A225300A7F832 /* WebRTCSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FD7F8C2B0A225200A7F832 /* WebRTCSession.swift */; };
-		D6FD7F8F2B0A270500A7F832 /* PeerConnectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FD7F8E2B0A270500A7F832 /* PeerConnectionDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -63,6 +64,8 @@
 		D6D389F52B094DD0006CA941 /* VideoCaptureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCaptureController.swift; sourceTree = "<group>"; };
 		D6D389F72B094E60006CA941 /* CameraVideoCaptureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVideoCaptureController.swift; sourceTree = "<group>"; };
 		D6D389F92B094EF1006CA941 /* FileVideoCaptureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileVideoCaptureController.swift; sourceTree = "<group>"; };
+		D6D8D0652B0E820700E26735 /* WebRTCSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCSessionDelegate.swift; sourceTree = "<group>"; };
+		D6D8D0672B0E846500E26735 /* SignalingServerSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalingServerSessionDelegate.swift; sourceTree = "<group>"; };
 		D6D952072B0CEB1C0061401A /* Logger+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Logger+Extensions.swift"; path = "Palmy/Extensions/Logger+Extensions.swift"; sourceTree = SOURCE_ROOT; };
 		D6F7A8CB2B00E0EF009262CD /* Palmy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Palmy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F7A8CE2B00E0EF009262CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -76,7 +79,6 @@
 		D6FD7F882B0A01C000A7F832 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		D6FD7F8A2B0A01E500A7F832 /* SignalingServerMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalingServerMessage.swift; sourceTree = "<group>"; };
 		D6FD7F8C2B0A225200A7F832 /* WebRTCSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCSession.swift; sourceTree = "<group>"; };
-		D6FD7F8E2B0A270500A7F832 /* PeerConnectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerConnectionDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,11 +100,12 @@
 		D62B49BE2B07756B00A0CF85 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D6FD7F8A2B0A01E500A7F832 /* SignalingServerMessage.swift */,
+				D6D8D0672B0E846500E26735 /* SignalingServerSessionDelegate.swift */,
 				D6FD7F842B09FDFC00A7F832 /* SignalingServerSession.swift */,
 				D6FD7F862B09FFE300A7F832 /* FirestoreSignalingServerSession.swift */,
+				D6D8D0652B0E820700E26735 /* WebRTCSessionDelegate.swift */,
 				D6FD7F8C2B0A225200A7F832 /* WebRTCSession.swift */,
-				D6FD7F8E2B0A270500A7F832 /* PeerConnectionDelegate.swift */,
-				D6FD7F8A2B0A01E500A7F832 /* SignalingServerMessage.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -265,14 +268,15 @@
 				D6F7A8D32B00E0EF009262CD /* MainViewController.swift in Sources */,
 				D69722BE2B0B7029005B3DA1 /* MainToolBarView.swift in Sources */,
 				D6FD7F8D2B0A225300A7F832 /* WebRTCSession.swift in Sources */,
-				D6FD7F8F2B0A270500A7F832 /* PeerConnectionDelegate.swift in Sources */,
 				D6D952082B0CEB1C0061401A /* Logger+Extensions.swift in Sources */,
 				D6F7A8CF2B00E0EF009262CD /* AppDelegate.swift in Sources */,
 				D6FD7F872B09FFE300A7F832 /* FirestoreSignalingServerSession.swift in Sources */,
 				D6FD7F852B09FDFC00A7F832 /* SignalingServerSession.swift in Sources */,
 				D62B49BB2B076CAD00A0CF85 /* User.swift in Sources */,
+				D6D8D0682B0E846500E26735 /* SignalingServerSessionDelegate.swift in Sources */,
 				D6D389F82B094E60006CA941 /* CameraVideoCaptureController.swift in Sources */,
 				D6A47EB02B04FD1F00010B6A /* CallInfoViewController.swift in Sources */,
+				D6D8D0662B0E820700E26735 /* WebRTCSessionDelegate.swift in Sources */,
 				D6F7A8D12B00E0EF009262CD /* SceneDelegate.swift in Sources */,
 				D6FD7F892B0A01C000A7F832 /* Room.swift in Sources */,
 				D6FD7F8B2B0A01E500A7F832 /* SignalingServerMessage.swift in Sources */,

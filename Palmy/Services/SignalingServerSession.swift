@@ -2,9 +2,8 @@ import Combine
 import WebRTC
 
 // SignalingChannel or SignalingServerChannel
-protocol SignalingServerSession {
-    var didRecieveRemoteSessionDescription: PassthroughSubject<RTCSessionDescription, Never> { get }
-    var didRecieveRemoteIceCandidate: PassthroughSubject<RTCIceCandidate, Never> { get }
+protocol SignalingServerSession: AnyObject {
+    var delegate: (SignalingServerSessionDelegate)? { get set }
 
     func send(_ message: SignalingServerMessage) throws
 

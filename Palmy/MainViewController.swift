@@ -9,7 +9,7 @@ class MainViewController: UIViewController {
 
     var webRtcSession: WebRTCSession
 
-    var videoCaptureController: any VideoCaptureController
+    var videoCaptureController: (any VideoCaptureController)!
 
     var cancellables = Set<AnyCancellable>()
 
@@ -17,7 +17,8 @@ class MainViewController: UIViewController {
 
     private var mainToolBarView: MainToolBarView!
 
-    private var localVideoView: RTCMTLVideoView!
+//    private var localVideoView: RTCMTLVideoView!
+    private var localVideoView: RTCCameraPreviewView!
 
     private var remoteVideoView: RTCMTLVideoView!
 
@@ -32,20 +33,6 @@ class MainViewController: UIViewController {
     init(signalingServerSession: SignalingServerSession, webRtcSession: WebRTCSession) {
         self.signalingServerSession = signalingServerSession
         self.webRtcSession = webRtcSession
-
-#if !targetEnvironment(simulator)
-        guard let videoCapturer = webRtcSession.videoCapturer as? RTCCameraVideoCapturer else {
-            fatalError()
-        }
-
-        videoCaptureController = CameraVideoCaptureController(capturer: videoCapturer)
-#else
-        guard let videoCapturer = webRtcSession.videoCapturer as? RTCFileVideoCapturer else {
-            fatalError()
-        }
-
-        videoCaptureController = FileVideoCaptureController(capturer: videoCapturer)
-#endif
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -108,8 +95,9 @@ class MainViewController: UIViewController {
 
         view.addSubview(mainToolBarView)
 
-        localVideoView = RTCMTLVideoView()
-        view.insertSubview(localVideoView, belowSubview: mainToolBarView)
+        localVideoView = RTCCameraPreviewView()
+        (localVideoView.layer as! AVCaptureVideoPreviewLayer).videoGravity = .resizeAspectFill
+        view.insertSubview(localVideoView, at: 0)
 
         remoteVideoView = RTCMTLVideoView()
         remoteVideoView.layer.cornerRadius = 13
@@ -139,12 +127,7 @@ class MainViewController: UIViewController {
         }
     }
 
-    override func viewDidLoad() {
-        webRtcSession.startRenderLocalVideo(localVideoView)
-        webRtcSession.startRenderRemoteVideo(remoteVideoView)
-
-        videoCaptureController.startCapture()
-    }
+    override func viewDidLoad() {}
 
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -161,7 +144,28 @@ class MainViewController: UIViewController {
         present(viewController, animated: true)
     }
 
+    private func startMediaCapturing() {
+#if targetEnvironment(simulator)
+                guard let fileVideoCapturer = webRtcSession.videoCapturer as? RTCFileVideoCapturer else {
+                    fatalError()
+                }
+
+                self?.videoCaptureController = FileVideoCaptureController(capturer: fileVideoCapturer)
+#else
+                guard let cameraVideoCapturer = webRtcSession.videoCapturer as? RTCCameraVideoCapturer else {
+                    fatalError()
+                }
+
+                localVideoView.captureSession = cameraVideoCapturer.captureSession
+                videoCaptureController = CameraVideoCaptureController(capturer: cameraVideoCapturer)
+#endif
+
+                videoCaptureController.startCapture()
+    }
+
     private func startCall() {
+        webRtcSession.connect()
+
         signalingServerSession.createRoom { [weak self] result in
             guard case .success(let room) = result else {
                 if case .failure(let error) = result {
@@ -171,8 +175,16 @@ class MainViewController: UIViewController {
                 return
             }
 
-            self?.webRtcSession.getOfferSessionDescription { [weak self] sessionDescription in
-                guard let strongSelf = self else { return }
+            assert(Thread.isMainThread)
+
+            self?.webRtcSession.getOfferSessionDescription { [weak self] result in
+                guard case .success(let sessionDescription) = result else {
+                    if case .failure(let error) = result {
+                        Logger.general.error("\(error.localizedDescription)")
+                    }
+
+                    return
+                }
 
                 do {
                     let message = try SignalingServerMessage(sessionDescription)
@@ -182,44 +194,10 @@ class MainViewController: UIViewController {
                     Logger.general.error("\(error.localizedDescription)")
                 }
 
-                self?.webRtcSession.didGenerateIceCandidate
-                    .sink { [weak self] candidate in
-                        do {
-                            let message = try SignalingServerMessage(candidate)
+                self?.room = room
+                self?.mainToolBarView.state = .insideRoom
 
-                            try self?.signalingServerSession.send(message)
-                        } catch {
-                            Logger.general.error("\(error.localizedDescription)")
-                        }
-                    }
-                    .store(in: &strongSelf.cancellables)
-
-                self?.signalingServerSession.didRecieveRemoteSessionDescription
-                    .sink { [weak self] sessionDescription in
-                        self?.webRtcSession.setRemoteSessionDescription(sessionDescription) { error in
-                            if let error = error {
-                                Logger.general.fault("\(error.localizedDescription)")
-                            }
-                        }
-                    }
-                    .store(in: &strongSelf.cancellables)
-
-                self?.signalingServerSession.didRecieveRemoteIceCandidate
-                    .sink { [weak self] candidate in
-                        self?.webRtcSession.addRemoteCandidate(candidate) { error in
-                            if let error = error {
-                                Logger.general.fault("\(error.localizedDescription)")
-                            }
-                        }
-                    }
-                    .store(in: &strongSelf.cancellables)
-
-                DispatchQueue.main.async {
-                    UIView.animate(withDuration: 0.25) {
-                        self?.room = room
-                        self?.mainToolBarView.state = .insideRoom
-                    }
-                }
+                self?.startMediaCapturing()
             }
         }
     }
@@ -234,6 +212,8 @@ class MainViewController: UIViewController {
                 return
             }
 
+            assert(Thread.isMainThread)
+
             self?.webRtcSession.setRemoteSessionDescription(sessionDescription) { error in
                 if let error = error {
                     Logger.general.error("\(error.localizedDescription)")
@@ -241,8 +221,14 @@ class MainViewController: UIViewController {
                     return
                 }
 
-                self?.webRtcSession.getAnswerSessionDescription { [weak self] sessionDescription in
-                    guard let strongSelf = self else { return }
+                self?.webRtcSession.getAnswerSessionDescription { [weak self] result in
+                    guard case .success(let sessionDescription) = result else {
+                        if case .failure(let error) = result {
+                            Logger.general.error("\(error.localizedDescription)")
+                        }
+
+                        return
+                    }
 
                     do {
                         let message = try SignalingServerMessage(sessionDescription)
@@ -252,34 +238,10 @@ class MainViewController: UIViewController {
                         Logger.general.error("\(error.localizedDescription)")
                     }
 
-                    self?.webRtcSession.didGenerateIceCandidate
-                        .sink { [weak self] candidate in
-                            do {
-                                let message = try SignalingServerMessage(candidate)
+                    self?.room = room
+                    self?.mainToolBarView.state = .insideRoom
 
-                               try  self?.signalingServerSession.send(message)
-                            } catch {
-                                Logger.general.error("\(error.localizedDescription)")
-                            }
-                        }
-                        .store(in: &strongSelf.cancellables)
-
-                    self?.signalingServerSession.didRecieveRemoteIceCandidate
-                        .sink { [weak self] candidate in
-                            self?.webRtcSession.addRemoteCandidate(candidate) { error in
-                                if let error = error {
-                                    Logger.general.fault("\(error.localizedDescription)")
-                                }
-                            }
-                        }
-                        .store(in: &strongSelf.cancellables)
-
-                    DispatchQueue.main.async {
-                        UIView.animate(withDuration: 0.25) { [weak self] in
-                            self?.room = room
-                            self?.mainToolBarView.state = .insideRoom
-                        }
-                    }
+                    self?.startMediaCapturing()
                 }
             }
         }
@@ -287,11 +249,11 @@ class MainViewController: UIViewController {
 
     private func endCall() {
         signalingServerSession.leaveRoom()
+        webRtcSession.disconnect()
+        localVideoView.captureSession = nil
 
-        UIView.animate(withDuration: 0.25) { [weak self] in
-            self?.room = nil
-            self?.mainToolBarView.state = .outsideRoom
-        }
+        room = nil
+        mainToolBarView.state = .outsideRoom
     }
 
     private enum Constants {
@@ -300,5 +262,35 @@ class MainViewController: UIViewController {
 
         static let smallCircleButtonRadius = CGFloat(32)
         static let smallCircleButtonCornerRadius = CGFloat(16)
+    }
+}
+
+extension MainViewController: WebRTCSessionDelegate {
+    func webRTCSession(_ webRTCSession: WebRTCSession, didGenerate iceCandidate: RTCIceCandidate) {
+        do {
+            let message = try SignalingServerMessage(iceCandidate)
+
+            try signalingServerSession.send(message)
+        } catch {
+            Logger.general.error("\(error.localizedDescription)")
+        }
+    }
+}
+
+extension MainViewController: SignalingServerSessionDelegate {
+    func signalingServerSession(_ signalingServerSession: SignalingServerSession, didRecieve remoteSessionDescription: RTCSessionDescription) {
+        webRtcSession.setRemoteSessionDescription(remoteSessionDescription) { error in
+            if let error = error {
+                Logger.general.fault("\(error.localizedDescription)")
+            }
+        }
+    }
+
+    func signalingServerSession(_ signalingServerSession: SignalingServerSession, didRecieve remoteIceCadidate: RTCIceCandidate) {
+        webRtcSession.addRemoteCandidate(remoteIceCadidate) { error in
+            if let error = error {
+                Logger.general.fault("\(error.localizedDescription)")
+            }
+        }
     }
 }

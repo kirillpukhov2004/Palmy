@@ -8,17 +8,14 @@ enum FirestoreSignalingServerSessionError: Error {
 }
 
 class FirestoreSignalingServerSession: SignalingServerSession {
+    weak var delegate: SignalingServerSessionDelegate?
+
     let firestore: Firestore
 
     private(set) var callDocumentRef: DocumentReference?
     private(set) var localIceCandidatesCollectionRef: CollectionReference?
     private(set) var remoteIceCandidatesCollectionRef: CollectionReference?
     private(set) var participantsCollectionRef: CollectionReference?
-
-    private var cancellables = Set<AnyCancellable>()
-
-    let didRecieveRemoteSessionDescription = PassthroughSubject<RTCSessionDescription, Never>()
-    let didRecieveRemoteIceCandidate = PassthroughSubject<RTCIceCandidate, Never>()
 
     private var remoteSessionDescriptionListner: ListenerRegistration?
     private var remoteIceCandidatesListner: ListenerRegistration?
@@ -67,52 +64,20 @@ class FirestoreSignalingServerSession: SignalingServerSession {
         localIceCandidatesCollectionRef = callDocumentRef!.collection("offerIceCandidates")
         remoteIceCandidatesCollectionRef = callDocumentRef!.collection("answerIceCandidates")
 
-        callDocumentRef?.addSnapshotListener { [weak self] snapshot, error in
-            guard let snapshot = snapshot, error == nil else {
-                if let error = error {
-                    Logger.general.error("\(error.localizedDescription)")
-                }
-
-                return
-            }
-
-            do {
-                let sessionDescription = try snapshot.data(as: SessionDescription.self)
-                
-                guard sessionDescription.type == .answer else { return }
-
-                self?.didRecieveRemoteSessionDescription.send(sessionDescription.rtcSessionDescription)
-            } catch {
-                Logger.general.error("\(error.localizedDescription)")
-            }
-        }
-
-        remoteIceCandidatesCollectionRef?.addSnapshotListener { [weak self] snapshot, error in
-            guard let snapshot = snapshot, error == nil else {
-                if let error = error {
-                    Logger.general.error("\(error.localizedDescription)")
-                }
-
-                return
-            }
-
-            snapshot.documentChanges.forEach { documentChange in
-                if documentChange.type == .added {
-                    do {
-                        let iceCandidate = try documentChange.document.data(as: IceCandidate.self)
-
-                        self?.didRecieveRemoteIceCandidate.send(iceCandidate.rtcIceCandidate)
-                    } catch {
-                        Logger.general.error("\(error.localizedDescription)")
-                    }
-                }
-            }
-        }
+        setupListners(for: .offer)
 
         completionHandler(.success(room))
     }
     
     func joinRoom(with id: String, completionHandler: @escaping (Result<(Room, RTCSessionDescription), Error>) -> Void) {
+        guard let user = (UIApplication.shared.delegate as! AppDelegate).user else {
+            completionHandler(.failure(FirestoreSignalingServerSessionError.userNotAuthorized))
+
+            return
+        }
+
+        let participant = Room.Participant(user: user, isHost: true, isVideoEnabled: true, isAudioEnabled: false)
+
         callDocumentRef = firestore.collection("rooms").document(id)
         participantsCollectionRef = callDocumentRef!.collection("participants")
         localIceCandidatesCollectionRef = callDocumentRef!.collection("answerIceCandidates")
@@ -142,29 +107,10 @@ class FirestoreSignalingServerSession: SignalingServerSession {
                     do {
                         let participants = try snapshot.documents.map { try $0.data(as: Room.Participant.self) }
 
-                        self?.remoteIceCandidatesListner = self?.remoteIceCandidatesCollectionRef?.addSnapshotListener { [weak self] snapshot, error in
-                            guard let snapshot = snapshot, error == nil else {
-                                if let error = error {
-                                    Logger.general.error("\(error.localizedDescription)")
-                                }
+                        self?.setupListners(for: .answer)
 
-                                return
-                            }
-
-                            snapshot.documentChanges.forEach { documentChange in
-                                if documentChange.type == .added {
-                                    do {
-                                        let iceCandidate = try documentChange.document.data(as: IceCandidate.self)
-
-                                        self?.didRecieveRemoteIceCandidate.send(iceCandidate.rtcIceCandidate)
-                                    } catch {
-                                        Logger.general.error("\(error.localizedDescription)")
-                                    }
-                                }
-                            }
-                        }
-
-                        let room = Room(id: id, participants: participants)
+                        let room = Room(id: id, participants: participants + [participant])
+                        try self?.participantsCollectionRef?.addDocument(from: participant)
 
                         completionHandler(.success((room, sessionDescription.rtcSessionDescription)))
                     } catch {
@@ -186,104 +132,63 @@ class FirestoreSignalingServerSession: SignalingServerSession {
         remoteIceCandidatesListner = nil
         participantsCollectionRef = nil
     }
-    
-//    func sendOffer(_ sessionDescription: RTCSessionDescription) throws {
-//        let sessionDescription = SessionDescription(rtcSessionDescription: sessionDescription)
-//
-//        try offerSessionDescriptionDocumentRef?.setData(from: sessionDescription)
-//    }
-//
-//    func sendOffer(_ iceCandidate: RTCIceCandidate) throws {
-//        let iceCandidate = IceCandidate(rtcIceCandidate: iceCandidate)
-//
-//        try offerCandidatesCollectionRef?.addDocument(from: iceCandidate)
-//    }
-//
-//    func sendAnswer(_ sessionDescription: RTCSessionDescription) throws {
-//        let sessionDescription = SessionDescription(rtcSessionDescription: sessionDescription)
-//
-//        try answerSessionDescriptionsCollectionRef?.addDocument(from: sessionDescription)
-//    }
-//
-//    func sendAnswer(_ iceCandidate: RTCIceCandidate) throws {
-//        let iceCandidate = IceCandidate(rtcIceCandidate: iceCandidate)
-//
-//        try answerCandidatesCollectionRef?.addDocument(from: iceCandidate)
-//    }
 
-//    func setupListners() {
-//        offerCandidatesListner = offerCandidatesCollectionRef?.addSnapshotListener { [weak self] querySnapshot, error in
-//            guard let querySnapshot = querySnapshot, error == nil else {
-//                if let error = error {
-//                    Logger.general.error("\(error.localizedDescription)")
-//                }
-//
-//                return
-//            }
-//
-//            querySnapshot.documentChanges.forEach { documentChange in
-//                if documentChange.type == .added {
-//                    do {
-//                        let candidate = try documentChange.document.data(as: IceCandidate.self)
-//                        let rtcCandidate = candidate.rtcIceCandidate
-//
-//                        self?.didRecieveOfferCandidate.send(rtcCandidate)
-//                    } catch {
-//                        Logger.general.error("\(error.localizedDescription)")
-//                    }
-//                }
-//            }
-//        }
-//
-//        remoteSessionDescriptionListner = answerSessionDescriptionsCollectionRef?.addSnapshotListener { [weak self] querySnapshot, error in
-//            guard let querySnapshot = querySnapshot, error == nil else {
-//                if let error = error {
-//                    Logger.general.error("\(error.localizedDescription)")
-//                }
-//
-//                return
-//            }
-//
-//            querySnapshot.documentChanges.forEach { documentChange in
-//                if documentChange.type == .added {
-//                    do {
-//                        let sessionDescription = try documentChange.document.data(as: SessionDescription.self)
-//                        let rtcSessionDescription = sessionDescription.rtcSessionDescription
-//
-//                        self?.didRecieveRemoteSessionDescription.send(rtcSessionDescription)
-//                    } catch {
-//                        Logger.general.error("\(error.localizedDescription)")
-//                    }
-//                }
-//            }
-//        }
-//
-//        remoteCandidatesListner = answerCandidatesCollectionRef?.addSnapshotListener { [unowned self] querySnapshot, error in
-//            guard let querySnapshot = querySnapshot, error == nil else {
-//                if let error = error {
-//                    Logger.general.error("\(error.localizedDescription)")
-//                }
-//
-//                return
-//            }
-//
-//            querySnapshot.documentChanges.forEach { documentChange in
-//                if documentChange.type == .added {
-//                    do {
-//                        let candidate = try documentChange.document.data(as: IceCandidate.self)
-//                        let rtcCandidate = candidate.rtcIceCandidate
-//
-//                        didRecieveRemoteCandidate.send(rtcCandidate)
-//                    } catch {
-//                        Logger.general.error("\(error.localizedDescription)")
-//                    }
-//                }
-//            }
-//        }
-//    }
-//
-//    func invalidateListners() {
-//        remoteCandidatesListner?.remove()
-//        remoteSessionDescriptionListner?.remove()
-//    }
+    // MARK: - Private Functions
+
+    func setupListners(for sessionType: SDPType) {
+        callDocumentRef?.addSnapshotListener { [weak self] snapshot, error in
+            guard let strongSelf = self else { return }
+
+            guard let snapshot = snapshot, error == nil else {
+                if let error = error {
+                    Logger.general.error("\(error.localizedDescription)")
+                }
+
+                return
+            }
+
+            do {
+                let sessionDescription = try snapshot.data(as: SessionDescription.self)
+
+                guard sessionDescription.type != sessionType else { return }
+
+                self?.delegate?.signalingServerSession(strongSelf, didRecieve: sessionDescription.rtcSessionDescription)
+            } catch {
+                Logger.general.error("\(error.localizedDescription)")
+            }
+        }
+
+        if sessionType == .offer {
+            remoteIceCandidatesCollectionRef?.addSnapshotListener { [weak self] snapshot, error in
+                guard let strongSelf = self else { return }
+
+                guard let snapshot = snapshot, error == nil else {
+                    if let error = error {
+                        Logger.general.error("\(error.localizedDescription)")
+                    }
+
+                    return
+                }
+
+                snapshot.documentChanges.forEach { documentChange in
+                    do {
+                        switch documentChange.type {
+                        case .added:
+                            let iceCandidate = try documentChange.document.data(as: IceCandidate.self)
+
+                            self?.delegate?.signalingServerSession(strongSelf, didRecieve: iceCandidate.rtcIceCandidate)
+                        case .removed:
+                            let iceCandidate = try documentChange.document.data(as: IceCandidate.self)
+
+                            self?.delegate?.signalingServerSession(strongSelf, didRecieveRemoved: iceCandidate.rtcIceCandidate)
+                        default:
+                            return
+                        }
+                    } catch {
+                        Logger.general.error("\(error.localizedDescription)")
+                    }
+                }
+            }
+        }
+    }
 }
