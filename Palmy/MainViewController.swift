@@ -7,7 +7,7 @@ import WebRTC
 class MainViewController: UIViewController {
     var signalingServerSession: SignalingServerSession
 
-    var webRtcSession: WebRTCSession
+    var webRTCSession: WebRTCSession
 
     var videoCaptureController: (any VideoCaptureController)!
 
@@ -32,7 +32,7 @@ class MainViewController: UIViewController {
 
     init(signalingServerSession: SignalingServerSession, webRtcSession: WebRTCSession) {
         self.signalingServerSession = signalingServerSession
-        self.webRtcSession = webRtcSession
+        self.webRTCSession = webRtcSession
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -127,8 +127,6 @@ class MainViewController: UIViewController {
         }
     }
 
-    override func viewDidLoad() {}
-
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
@@ -146,13 +144,13 @@ class MainViewController: UIViewController {
 
     private func startMediaCapturing() {
 #if targetEnvironment(simulator)
-                guard let fileVideoCapturer = webRtcSession.videoCapturer as? RTCFileVideoCapturer else {
+                guard let fileVideoCapturer = webRTCSession.videoCapturer as? RTCFileVideoCapturer else {
                     fatalError()
                 }
 
-                self?.videoCaptureController = FileVideoCaptureController(capturer: fileVideoCapturer)
+                videoCaptureController = FileVideoCaptureController(capturer: fileVideoCapturer)
 #else
-                guard let cameraVideoCapturer = webRtcSession.videoCapturer as? RTCCameraVideoCapturer else {
+                guard let cameraVideoCapturer = webRTCSession.videoCapturer as? RTCCameraVideoCapturer else {
                     fatalError()
                 }
 
@@ -160,11 +158,36 @@ class MainViewController: UIViewController {
                 videoCaptureController = CameraVideoCaptureController(capturer: cameraVideoCapturer)
 #endif
 
-                videoCaptureController.startCapture()
+        videoCaptureController.startCapture()
+        webRTCSession.startRenderRemoteVideo(remoteVideoView)
+
+        let webRTCConfiguration = RTCAudioSessionConfiguration()
+        webRTCConfiguration.categoryOptions = .defaultToSpeaker
+        RTCAudioSessionConfiguration.setWebRTC(webRTCConfiguration)
+
+        let audioSession = RTCAudioSession.sharedInstance()
+        audioSession.add(self)
+
+        let audioSessionConfiguration = RTCAudioSessionConfiguration()
+        audioSessionConfiguration.category = AVAudioSession.Category.ambient.rawValue
+        audioSessionConfiguration.categoryOptions = .duckOthers
+        audioSessionConfiguration.mode = AVAudioSession.Mode.default.rawValue
+        let _audioSession = RTCAudioSession.sharedInstance()
+        do {
+            _audioSession.lockForConfiguration()
+            if _audioSession.isActive {
+                try _audioSession.setConfiguration(audioSessionConfiguration)
+            } else {
+                try _audioSession.setConfiguration(audioSessionConfiguration, active: true)
+            }   
+            _audioSession.unlockForConfiguration()
+        } catch {
+            Logger.general.error("\(error.localizedDescription)")
+        }
     }
 
     private func startCall() {
-        webRtcSession.connect()
+        webRTCSession.connect()
 
         signalingServerSession.createRoom { [weak self] result in
             guard case .success(let room) = result else {
@@ -175,9 +198,7 @@ class MainViewController: UIViewController {
                 return
             }
 
-            assert(Thread.isMainThread)
-
-            self?.webRtcSession.getOfferSessionDescription { [weak self] result in
+            self?.webRTCSession.getOfferSessionDescription { [weak self] result in
                 guard case .success(let sessionDescription) = result else {
                     if case .failure(let error) = result {
                         Logger.general.error("\(error.localizedDescription)")
@@ -198,11 +219,16 @@ class MainViewController: UIViewController {
                 self?.mainToolBarView.state = .insideRoom
 
                 self?.startMediaCapturing()
+
+                self?.signalingServerSession.delegate = self
+                self?.webRTCSession.delegate = self
             }
         }
     }
 
     private func connectToCall(with roomId: String) {
+        webRTCSession.connect()
+
         signalingServerSession.joinRoom(with: roomId) { [weak self] result in
             guard case .success((let room, let sessionDescription)) = result else {
                 if case .failure(let error) = result {
@@ -214,14 +240,14 @@ class MainViewController: UIViewController {
 
             assert(Thread.isMainThread)
 
-            self?.webRtcSession.setRemoteSessionDescription(sessionDescription) { error in
+            self?.webRTCSession.setRemoteSessionDescription(sessionDescription) { error in
                 if let error = error {
                     Logger.general.error("\(error.localizedDescription)")
 
                     return
                 }
 
-                self?.webRtcSession.getAnswerSessionDescription { [weak self] result in
+                self?.webRTCSession.getAnswerSessionDescription { [weak self] result in
                     guard case .success(let sessionDescription) = result else {
                         if case .failure(let error) = result {
                             Logger.general.error("\(error.localizedDescription)")
@@ -234,6 +260,9 @@ class MainViewController: UIViewController {
                         let message = try SignalingServerMessage(sessionDescription)
 
                         try self?.signalingServerSession.send(message)
+
+                        self?.signalingServerSession.delegate = self
+                        self?.webRTCSession.delegate = self
                     } catch {
                         Logger.general.error("\(error.localizedDescription)")
                     }
@@ -249,7 +278,7 @@ class MainViewController: UIViewController {
 
     private func endCall() {
         signalingServerSession.leaveRoom()
-        webRtcSession.disconnect()
+        webRTCSession.disconnect()
         localVideoView.captureSession = nil
 
         room = nil
@@ -279,7 +308,7 @@ extension MainViewController: WebRTCSessionDelegate {
 
 extension MainViewController: SignalingServerSessionDelegate {
     func signalingServerSession(_ signalingServerSession: SignalingServerSession, didRecieve remoteSessionDescription: RTCSessionDescription) {
-        webRtcSession.setRemoteSessionDescription(remoteSessionDescription) { error in
+        webRTCSession.setRemoteSessionDescription(remoteSessionDescription) { error in
             if let error = error {
                 Logger.general.fault("\(error.localizedDescription)")
             }
@@ -287,10 +316,20 @@ extension MainViewController: SignalingServerSessionDelegate {
     }
 
     func signalingServerSession(_ signalingServerSession: SignalingServerSession, didRecieve remoteIceCadidate: RTCIceCandidate) {
-        webRtcSession.addRemoteCandidate(remoteIceCadidate) { error in
+        webRTCSession.addRemoteCandidate(remoteIceCadidate) { error in
             if let error = error {
                 Logger.general.fault("\(error.localizedDescription)")
             }
         }
+    }
+}
+
+extension MainViewController: RTCAudioSessionDelegate {
+    func audioSessionDidStartPlayOrRecord(_ session: RTCAudioSession) {
+        Logger.general.log("\(#function)")
+    }
+
+    func audioSessionDidStopPlayOrRecord(_ session: RTCAudioSession) {
+        Logger.general.log("\(#function)")
     }
 }

@@ -10,7 +10,7 @@ class WebRTCSession: NSObject {
 
     private static let defaultMediaConstraints = {
         let mandatoryConstraints = [
-//            kRTCMediaConstraintsOfferToReceiveAudio: kRTCMediaConstraintsValueTrue,
+            kRTCMediaConstraintsOfferToReceiveAudio: kRTCMediaConstraintsValueTrue,
             kRTCMediaConstraintsOfferToReceiveVideo: kRTCMediaConstraintsValueTrue,
         ]
 
@@ -103,7 +103,6 @@ class WebRTCSession: NSObject {
         assert(peerConnection != nil)
 
         peerConnection?.add(candidate) { error in
-            Logger.general.log("2: \(Thread.current)")
             DispatchQueue.main.async {
                 completionHandler(error)
             }
@@ -175,11 +174,35 @@ extension WebRTCSession: RTCPeerConnectionDelegate {
 
     func peerConnectionShouldNegotiate(_ peerConnection: RTCPeerConnection) {}
 
-    func peerConnection(_ peerConnection: RTCPeerConnection, didChange stateChanged: RTCSignalingState) {}
+    func peerConnection(_ peerConnection: RTCPeerConnection, didChange stateChanged: RTCSignalingState) {
+        let state: String
+        switch stateChanged {
+        case .stable:
+            state = "stable"
+        case .haveLocalOffer:
+            state = "haveLocalOffer"
+        case .haveLocalPrAnswer:
+            state = "haveLocalPrAnswer"
+        case .haveRemoteOffer:
+            state = "haveRemoteOffer"
+        case .haveRemotePrAnswer:
+            state = "haveRemotePrAnswer"
+        case .closed:
+            state = "closed"
+        @unknown default:
+            fatalError()
+        }
 
-    func peerConnection(_ peerConnection: RTCPeerConnection, didAdd stream: RTCMediaStream) {}
+        Logger.general.log("Peer connection state did change to \(state)")
+    }
 
-    func peerConnection(_ peerConnection: RTCPeerConnection, didRemove stream: RTCMediaStream) {}
+    func peerConnection(_ peerConnection: RTCPeerConnection, didAdd stream: RTCMediaStream) {
+        Logger.general.log("Stream with \(stream.videoTracks.count) video tracks and \(stream.audioTracks.count) audio tracks was added.")
+    }
+
+    func peerConnection(_ peerConnection: RTCPeerConnection, didRemove stream: RTCMediaStream) {
+        Logger.general.log("Stream with \(stream.videoTracks.count) video tracks and \(stream.audioTracks.count) audio tracks was removed.")
+    }
 
     func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceConnectionState) {}
 
