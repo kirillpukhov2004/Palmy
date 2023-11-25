@@ -37,7 +37,7 @@ class MainViewController: UIViewController {
         containerView.addSubview(joinCallButton)
 
         containerView.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(16)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(16)
             make.width.equalTo(332)
             make.height.equalTo(55)
             make.centerX.equalToSuperview()

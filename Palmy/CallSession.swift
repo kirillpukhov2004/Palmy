@@ -140,6 +140,14 @@ class CallSession: NSObject {
         roomID = nil
     }
 
+    func setMicrophoneEnabled(_ isAudioEnabled: Bool) {
+        webRTCSession.localAudioTrack?.isEnabled = isAudioEnabled
+    }
+
+    func setCameraEnabled(_ isVideoEnabled: Bool) {
+        webRTCSession.localVideoTrack?.isEnabled = isVideoEnabled
+    }
+
     // MARK: - Private Functions
 
     private func startMediaCapturing() {

@@ -18,6 +18,10 @@ class CallToolBarView: UIView {
 
     weak var delegate: CallToolBarViewDelegate?
 
+    private var isCameraEnabled: Bool = true
+
+    private var isMicrophoneEnabled: Bool = true
+
     override var intrinsicContentSize: CGSize {
         let size: CGSize
 
@@ -64,13 +68,14 @@ class CallToolBarView: UIView {
         addSubview(cameraToggleButton)
 
         let cameraToggleButtonBackgroundVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterialDark))
+        cameraToggleButtonBackgroundVisualEffectView.isUserInteractionEnabled = false
         cameraToggleButton.insertSubview(cameraToggleButtonBackgroundVisualEffectView, belowSubview: cameraToggleButton.imageView!)
         cameraToggleButtonBackgroundVisualEffectView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
 
         microphoneToggleButton = UIButton(type: .custom)
-        microphoneToggleButton.addTarget(self, action: #selector(cameraToggleButtonPressed), for: .touchUpInside)
+        microphoneToggleButton.addTarget(self, action: #selector(microphoneToggleButtonPressed), for: .touchUpInside)
         let microphoneTogglButtonSymbolConfiguration = UIImage.SymbolConfiguration(font: .systemFont(ofSize: 22, weight: .regular))
         microphoneToggleButton.setImage(UIImage(systemName: "mic.fill", withConfiguration: microphoneTogglButtonSymbolConfiguration)!, for: .normal)
         cameraToggleButton.backgroundColor = .clear
@@ -80,6 +85,7 @@ class CallToolBarView: UIView {
         addSubview(microphoneToggleButton)
 
         let microphoneTogglButtonBackgroundVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterialDark))
+        microphoneTogglButtonBackgroundVisualEffectView.isUserInteractionEnabled = false
         microphoneToggleButton.insertSubview(microphoneTogglButtonBackgroundVisualEffectView, belowSubview: microphoneToggleButton.imageView!)
         microphoneTogglButtonBackgroundVisualEffectView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -126,10 +132,28 @@ class CallToolBarView: UIView {
     }
 
     @objc private func cameraToggleButtonPressed() {
+        let cameraToggleButtonSymbolConfiguration = UIImage.SymbolConfiguration(font: .systemFont(ofSize: 22, weight: .regular))
+        if isCameraEnabled {
+            cameraToggleButton.setImage(UIImage(systemName: "camera", withConfiguration: cameraToggleButtonSymbolConfiguration), for: .normal)
+            isCameraEnabled = false
+        } else {
+            cameraToggleButton.setImage(UIImage(systemName: "camera.fill", withConfiguration: cameraToggleButtonSymbolConfiguration), for: .normal)
+            isCameraEnabled = true
+        }
+
         delegate?.callToolBarViewDidCameraToggleButtonPressed(self)
     }
 
     @objc private func microphoneToggleButtonPressed() {
+        let microphoneTogglButtonSymbolConfiguration = UIImage.SymbolConfiguration(font: .systemFont(ofSize: 22, weight: .regular))
+        if isMicrophoneEnabled {
+            microphoneToggleButton.setImage(UIImage(systemName: "mic", withConfiguration: microphoneTogglButtonSymbolConfiguration), for: .normal)
+            isMicrophoneEnabled = false
+        } else {
+            microphoneToggleButton.setImage(UIImage(systemName: "mic.fill", withConfiguration: microphoneTogglButtonSymbolConfiguration), for: .normal)
+            isMicrophoneEnabled = true
+        }
+
         delegate?.callToolBarViewDidMicrophoneToggleButtonPressed(self)
     }
 

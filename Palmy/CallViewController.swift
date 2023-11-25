@@ -14,11 +14,29 @@ final class CallViewController: UIViewController {
 
     private var cameraPreviewView: RTCCameraPreviewView!
     private var remoteVideoView: RTCMTLVideoView!
-    
+
+    private var isMicrophoneEnabled: Bool {
+        didSet {
+            callSession.setMicrophoneEnabled(isMicrophoneEnabled)
+        }
+    }
+
+    private var isCameraEnabled: Bool {
+        didSet {
+            callSession.setCameraEnabled(isCameraEnabled)
+        }
+    }
+
+    private var cameraPosition: AVCaptureDevice.Position
+
     var roomID: String?
 
     init(roomID: String?) {
         self.roomID = roomID
+
+        isMicrophoneEnabled = true
+        isCameraEnabled = true
+        cameraPosition = .front
 
         let firestore = Firestore.firestore()
         callSession = CallSession(signalingServerSession: FirestoreSignalingServerSession(firestore: firestore))
@@ -131,11 +149,11 @@ extension CallViewController: CallToolBarViewDelegate {
     }
 
     func callToolBarViewDidCameraToggleButtonPressed(_ callToolBarView: CallToolBarView) {
-
+        isCameraEnabled.toggle()
     }
 
     func callToolBarViewDidMicrophoneToggleButtonPressed(_ callToolBarView: CallToolBarView) {
-
+        isMicrophoneEnabled.toggle()
     }
 }
 
