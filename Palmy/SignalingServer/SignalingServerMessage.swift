@@ -70,6 +70,7 @@ enum SignalingServerMessageType: String, Codable {
     case answer
     case iceCandidate
     case iceCandidatesRemoval
+    case disconnect
 }
 
 struct SignalingServerMessage: Codable {

@@ -11,10 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         self.window = window
 
-        let signalingServerClient = FirestoreSignalingServerSession(firestore: Firestore.firestore())
-        let webRtcService = WebRTCSession()
-
-        let viewController = MainViewController(signalingServerSession: signalingServerClient, webRtcSession: webRtcService)
+        let viewController = MainViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
         window.makeKeyAndVisible()

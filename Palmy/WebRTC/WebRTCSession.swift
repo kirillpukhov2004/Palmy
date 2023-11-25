@@ -4,8 +4,8 @@ import WebRTC
 
 class WebRTCSession: NSObject {
     private static let iceServers = [
-        "stun:185.178.46.35:3478",
-        "stun:185.178.46.35:3479"
+        "stun:46.19.66.12:3478",
+        "stun:46.19.66.12:3479"
     ]
 
     private static let defaultMediaConstraints = {
@@ -28,7 +28,9 @@ class WebRTCSession: NSObject {
 
     private(set) var peerConnection: RTCPeerConnection?
 
-    private(set) var videoCapturer: RTCVideoCapturer?
+    private(set) var audioSession: RTCAudioSession?
+
+    private(set) var cameraVideoCapturer: RTCCameraVideoCapturer?
 
     private(set) var localAudioTrack: RTCAudioTrack?
     private(set) var localVideoTrack: RTCVideoTrack?
@@ -45,7 +47,7 @@ class WebRTCSession: NSObject {
     func disconnect() {
         peerConnection?.close()
         peerConnection = nil
-        videoCapturer = nil
+        cameraVideoCapturer = nil
         localAudioTrack = nil
         localVideoTrack = nil
         remoteVideoTrack = nil
@@ -129,6 +131,8 @@ class WebRTCSession: NSObject {
     }
 
     private func setupMediaSenders() {
+        audioSession = RTCAudioSession.sharedInstance()
+
         localAudioTrack = createLocalAudioTrack()
         peerConnection?.add(localAudioTrack!, streamIds: ["stream"])
 
@@ -147,13 +151,7 @@ class WebRTCSession: NSObject {
     private func createLocalVideoTrack() -> RTCVideoTrack {
         let videoSource = Self.factory.videoSource()
 
-#if !targetEnvironment(simulator)
-        let cameraVideoCapturer = RTCCameraVideoCapturer(delegate: videoSource)
-        videoCapturer = cameraVideoCapturer
-#else
-        let fileVideoCapturer = RTCFileVideoCapturer(delegate: videoSource)
-        videoCapturer = fileVideoCapturer
-#endif
+        cameraVideoCapturer = RTCCameraVideoCapturer(delegate: videoSource)
 
         return Self.factory.videoTrack(with: videoSource, trackId: "video0")
     }
@@ -164,18 +162,32 @@ class WebRTCSession: NSObject {
 }
 
 extension WebRTCSession: RTCPeerConnectionDelegate {
-    func peerConnection(_ peerConnection: RTCPeerConnection, didGenerate candidate: RTCIceCandidate) {
-        delegate?.webRTCSession(self, didGenerate: candidate)
-    }
+    func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCPeerConnectionState) {
+        let state: String
 
-    func peerConnection(_ peerConnection: RTCPeerConnection, didRemove candidates: [RTCIceCandidate]) {
-        delegate?.webRTCSession(self, didRemove: candidates)
-    }
+        switch newState {
+        case .new:
+            state = "new"
+        case .connecting:
+            state = "connecting"
+        case .connected:
+            state = "connected"
+        case .disconnected:
+            state = "disconnected"
+        case .failed:
+            state = "failed"
+        case .closed:
+            state = "closed"
+        @unknown default:
+            fatalError()
+        }
 
-    func peerConnectionShouldNegotiate(_ peerConnection: RTCPeerConnection) {}
+        Logger.general.log("Peer connection state did change to \(state)")
+    }
 
     func peerConnection(_ peerConnection: RTCPeerConnection, didChange stateChanged: RTCSignalingState) {
         let state: String
+
         switch stateChanged {
         case .stable:
             state = "stable"
@@ -193,8 +205,64 @@ extension WebRTCSession: RTCPeerConnectionDelegate {
             fatalError()
         }
 
-        Logger.general.log("Peer connection state did change to \(state)")
+        Logger.general.log("Peer connection signaling state did change to \(state)")
     }
+
+    func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceConnectionState) {
+        let state: String
+
+        switch newState {
+        case .new:
+            state = "new"
+        case .checking:
+            state = "checking"
+        case .connected:
+            state = "connected"
+        case .completed:
+            state = "completed"
+        case .failed:
+            state = "failed"
+        case .disconnected:
+            state = "disconnected"
+        case .closed:
+            state = "closed"
+        case .count:
+            state = "count"
+        @unknown default:
+            fatalError()
+        }
+
+        Logger.general.log("Ice connection state did change to \(state).")
+    }
+
+    func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceGatheringState) {
+        let state: String
+
+        switch newState {
+        case .new:
+            state = "new"
+        case .gathering:
+            state = "gathering"
+        case .complete:
+            state = "complete"
+        @unknown default:
+            fatalError()
+        }
+
+        Logger.general.log("Ice gathering state did change to \(state).")
+    }
+
+
+    func peerConnection(_ peerConnection: RTCPeerConnection, didGenerate candidate: RTCIceCandidate) {
+        delegate?.webRTCSession(self, didGenerate: candidate)
+    }
+
+    func peerConnection(_ peerConnection: RTCPeerConnection, didRemove candidates: [RTCIceCandidate]) {
+        delegate?.webRTCSession(self, didRemove: candidates)
+    }
+
+    func peerConnectionShouldNegotiate(_ peerConnection: RTCPeerConnection) {}
+
 
     func peerConnection(_ peerConnection: RTCPeerConnection, didAdd stream: RTCMediaStream) {
         Logger.general.log("Stream with \(stream.videoTracks.count) video tracks and \(stream.audioTracks.count) audio tracks was added.")
@@ -203,10 +271,6 @@ extension WebRTCSession: RTCPeerConnectionDelegate {
     func peerConnection(_ peerConnection: RTCPeerConnection, didRemove stream: RTCMediaStream) {
         Logger.general.log("Stream with \(stream.videoTracks.count) video tracks and \(stream.audioTracks.count) audio tracks was removed.")
     }
-
-    func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceConnectionState) {}
-
-    func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceGatheringState) {}
 
     func peerConnection(_ peerConnection: RTCPeerConnection, didOpen dataChannel: RTCDataChannel) {}
 }

@@ -38,52 +38,31 @@ class FirestoreSignalingServerSession: SignalingServerSession {
             let iceCandidates = try JSONDecoder().decode([IceCandidate].self, from: message.data)
 
             print("Should remove \(iceCandidates.count) iceCandidates")
+        case .disconnect:
+            fatalError()
         }
     }
     
-    func createRoom(completionHandler: @escaping (Result<Room, Error>) -> Void) {
-        guard let user = (UIApplication.shared.delegate as! AppDelegate).user else {
-            completionHandler(.failure(FirestoreSignalingServerSessionError.userNotAuthorized))
+    func createRoom(completionHandler: @escaping (Result<RoomID, Error>) -> Void) {
+        let roomID = UUID().uuidString
 
-            return
-        }
-
-        let participant = Room.Participant(user: user, isHost: true, isVideoEnabled: true, isAudioEnabled: false)
-
-        do {
-            try participantsCollectionRef?.addDocument(from: participant)
-        } catch {
-            completionHandler(.failure(error))
-        }
-
-        let roomId = UUID().uuidString
-        let room = Room(id: roomId, participants: [participant])
-
-        callDocumentRef = firestore.collection("rooms").document(roomId)
+        callDocumentRef = firestore.collection("rooms").document(roomID)
         participantsCollectionRef = callDocumentRef!.collection("participants")
         localIceCandidatesCollectionRef = callDocumentRef!.collection("offerIceCandidates")
         remoteIceCandidatesCollectionRef = callDocumentRef!.collection("answerIceCandidates")
 
         setupListners(for: .offer)
 
-        completionHandler(.success(room))
+        completionHandler(.success(roomID))
     }
     
-    func joinRoom(with id: String, completionHandler: @escaping (Result<(Room, RTCSessionDescription), Error>) -> Void) {
-        guard let user = (UIApplication.shared.delegate as! AppDelegate).user else {
-            completionHandler(.failure(FirestoreSignalingServerSessionError.userNotAuthorized))
-
-            return
-        }
-
-        let participant = Room.Participant(user: user, isHost: true, isVideoEnabled: true, isAudioEnabled: false)
-
+    func joinRoom(with id: String, completionHandler: @escaping (Result<RTCSessionDescription, Error>) -> Void) {
         callDocumentRef = firestore.collection("rooms").document(id)
         participantsCollectionRef = callDocumentRef!.collection("participants")
         localIceCandidatesCollectionRef = callDocumentRef!.collection("answerIceCandidates")
         remoteIceCandidatesCollectionRef = callDocumentRef!.collection("offerIceCandidates")
 
-        callDocumentRef?.getDocument(source: .server) { [weak self] snapshot, error in
+        callDocumentRef?.getDocument(source: .server) { snapshot, error in
             guard let snapshot = snapshot, error == nil else {
                 if let error = error {
                     completionHandler(.failure(error))
@@ -95,28 +74,7 @@ class FirestoreSignalingServerSession: SignalingServerSession {
             do {
                 let sessionDescription = try snapshot.data(as: SessionDescription.self)
 
-                self?.participantsCollectionRef?.getDocuments(source: .server) { snapshot, error in
-                    guard let snapshot = snapshot, error == nil else {
-                        if let error = error {
-                            completionHandler(.failure(error))
-                        }
-
-                        return
-                    }
-
-                    do {
-                        let participants = try snapshot.documents.map { try $0.data(as: Room.Participant.self) }
-
-                        self?.setupListners(for: .answer)
-
-                        let room = Room(id: id, participants: participants + [participant])
-                        try self?.participantsCollectionRef?.addDocument(from: participant)
-
-                        completionHandler(.success((room, sessionDescription.rtcSessionDescription)))
-                    } catch {
-                        completionHandler(.failure(error))
-                    }
-                }
+                completionHandler(.success(sessionDescription.rtcSessionDescription))
             } catch {
                 completionHandler(.failure(error))
             }

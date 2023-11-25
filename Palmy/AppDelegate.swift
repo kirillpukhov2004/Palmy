@@ -13,6 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         RTCInitializeSSL()
         RTCSetMinDebugLogLevel(.none)
 
+        FirebaseConfiguration.shared.setLoggerLevel(.min)
         FirebaseApp.configure()
 
         Auth.auth().signInAnonymously { authResult, error in

@@ -8,23 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		D619539D2B090B70008105C6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D619539C2B090B70008105C6 /* SnapKit */; };
-		D628EAFC2B0DB7D500DD2C52 /* foreman.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D628EAFB2B0DB7D500DD2C52 /* foreman.mp4 */; };
 		D62B49BB2B076CAD00A0CF85 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B49BA2B076CAD00A0CF85 /* User.swift */; };
 		D63540F22B07DECB00A46AAE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D63540F12B07DECB00A46AAE /* FirebaseAuth */; };
 		D68622C92B08A8550083943C /* WebRTC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68622C72B08A84F0083943C /* WebRTC.xcframework */; };
 		D68622CA2B08A8550083943C /* WebRTC.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D68622C72B08A84F0083943C /* WebRTC.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D68622CE2B08CE420083943C /* AlertKit in Frameworks */ = {isa = PBXBuildFile; productRef = D68622CD2B08CE420083943C /* AlertKit */; };
-		D69722BE2B0B7029005B3DA1 /* MainToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69722BD2B0B7029005B3DA1 /* MainToolBarView.swift */; };
+		D69722BE2B0B7029005B3DA1 /* CallToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69722BD2B0B7029005B3DA1 /* CallToolBarView.swift */; };
 		D6A47EB02B04FD1F00010B6A /* CallInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A47EAF2B04FD1F00010B6A /* CallInfoViewController.swift */; };
 		D6A49DFA2B078939003DFF05 /* usernames.json in Resources */ = {isa = PBXBuildFile; fileRef = D6A49DF92B078939003DFF05 /* usernames.json */; };
 		D6A49DFC2B078B2F003DFF05 /* emails.json in Resources */ = {isa = PBXBuildFile; fileRef = D6A49DFB2B078B2F003DFF05 /* emails.json */; };
+		D6C1F1532B11EAD700E8F3DF /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C1F1522B11EAD700E8F3DF /* CallViewController.swift */; };
 		D6D1BC172B014AE400BC86AB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6D1BC162B014AE400BC86AB /* GoogleService-Info.plist */; };
 		D6D389F62B094DD0006CA941 /* VideoCaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D389F52B094DD0006CA941 /* VideoCaptureController.swift */; };
 		D6D389F82B094E60006CA941 /* CameraVideoCaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D389F72B094E60006CA941 /* CameraVideoCaptureController.swift */; };
-		D6D389FA2B094EF1006CA941 /* FileVideoCaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D389F92B094EF1006CA941 /* FileVideoCaptureController.swift */; };
 		D6D8D0662B0E820700E26735 /* WebRTCSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D8D0652B0E820700E26735 /* WebRTCSessionDelegate.swift */; };
 		D6D8D0682B0E846500E26735 /* SignalingServerSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D8D0672B0E846500E26735 /* SignalingServerSessionDelegate.swift */; };
 		D6D952082B0CEB1C0061401A /* Logger+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D952072B0CEB1C0061401A /* Logger+Extensions.swift */; };
+		D6E965092B0F1E8D001BFDA2 /* CallSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E965082B0F1E8D001BFDA2 /* CallSession.swift */; };
 		D6F7A8CF2B00E0EF009262CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F7A8CE2B00E0EF009262CD /* AppDelegate.swift */; };
 		D6F7A8D12B00E0EF009262CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F7A8D02B00E0EF009262CD /* SceneDelegate.swift */; };
 		D6F7A8D32B00E0EF009262CD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F7A8D22B00E0EF009262CD /* MainViewController.swift */; };
@@ -53,20 +53,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D628EAFB2B0DB7D500DD2C52 /* foreman.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = foreman.mp4; sourceTree = "<group>"; };
 		D62B49BA2B076CAD00A0CF85 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D68622C72B08A84F0083943C /* WebRTC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = WebRTC.xcframework; sourceTree = "<group>"; };
-		D69722BD2B0B7029005B3DA1 /* MainToolBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainToolBarView.swift; sourceTree = "<group>"; };
+		D69722BD2B0B7029005B3DA1 /* CallToolBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallToolBarView.swift; sourceTree = "<group>"; };
 		D6A47EAF2B04FD1F00010B6A /* CallInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallInfoViewController.swift; sourceTree = "<group>"; };
 		D6A49DF92B078939003DFF05 /* usernames.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = usernames.json; sourceTree = "<group>"; };
 		D6A49DFB2B078B2F003DFF05 /* emails.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = emails.json; sourceTree = "<group>"; };
+		D6C1F1522B11EAD700E8F3DF /* CallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
 		D6D1BC162B014AE400BC86AB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D6D389F52B094DD0006CA941 /* VideoCaptureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCaptureController.swift; sourceTree = "<group>"; };
 		D6D389F72B094E60006CA941 /* CameraVideoCaptureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVideoCaptureController.swift; sourceTree = "<group>"; };
-		D6D389F92B094EF1006CA941 /* FileVideoCaptureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileVideoCaptureController.swift; sourceTree = "<group>"; };
 		D6D8D0652B0E820700E26735 /* WebRTCSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCSessionDelegate.swift; sourceTree = "<group>"; };
 		D6D8D0672B0E846500E26735 /* SignalingServerSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalingServerSessionDelegate.swift; sourceTree = "<group>"; };
 		D6D952072B0CEB1C0061401A /* Logger+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Logger+Extensions.swift"; path = "Palmy/Extensions/Logger+Extensions.swift"; sourceTree = SOURCE_ROOT; };
+		D6E965082B0F1E8D001BFDA2 /* CallSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallSession.swift; sourceTree = "<group>"; };
 		D6F7A8CB2B00E0EF009262CD /* Palmy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Palmy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F7A8CE2B00E0EF009262CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6F7A8D02B00E0EF009262CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,19 +97,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D62B49BE2B07756B00A0CF85 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				D6FD7F8A2B0A01E500A7F832 /* SignalingServerMessage.swift */,
-				D6D8D0672B0E846500E26735 /* SignalingServerSessionDelegate.swift */,
-				D6FD7F842B09FDFC00A7F832 /* SignalingServerSession.swift */,
-				D6FD7F862B09FFE300A7F832 /* FirestoreSignalingServerSession.swift */,
-				D6D8D0652B0E820700E26735 /* WebRTCSessionDelegate.swift */,
-				D6FD7F8C2B0A225200A7F832 /* WebRTCSession.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
 		D62B49BF2B07757A00A0CF85 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +112,26 @@
 				D6D952072B0CEB1C0061401A /* Logger+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D6E9650A2B0F1F66001BFDA2 /* WebRTC */ = {
+			isa = PBXGroup;
+			children = (
+				D6D8D0652B0E820700E26735 /* WebRTCSessionDelegate.swift */,
+				D6FD7F8C2B0A225200A7F832 /* WebRTCSession.swift */,
+			);
+			path = WebRTC;
+			sourceTree = "<group>";
+		};
+		D6E9650B2B0F1F72001BFDA2 /* SignalingServer */ = {
+			isa = PBXGroup;
+			children = (
+				D6FD7F8A2B0A01E500A7F832 /* SignalingServerMessage.swift */,
+				D6D8D0672B0E846500E26735 /* SignalingServerSessionDelegate.swift */,
+				D6FD7F842B09FDFC00A7F832 /* SignalingServerSession.swift */,
+				D6FD7F862B09FFE300A7F832 /* FirestoreSignalingServerSession.swift */,
+			);
+			path = SignalingServer;
 			sourceTree = "<group>";
 		};
 		D6F7A8C22B00E0EF009262CD = {
@@ -148,17 +155,18 @@
 			isa = PBXGroup;
 			children = (
 				D62B49BF2B07757A00A0CF85 /* Models */,
-				D62B49BE2B07756B00A0CF85 /* Services */,
+				D6E9650B2B0F1F72001BFDA2 /* SignalingServer */,
+				D6E9650A2B0F1F66001BFDA2 /* WebRTC */,
 				D6F7A8CE2B00E0EF009262CD /* AppDelegate.swift */,
 				D6F7A8D02B00E0EF009262CD /* SceneDelegate.swift */,
 				D6F7A8D22B00E0EF009262CD /* MainViewController.swift */,
-				D69722BD2B0B7029005B3DA1 /* MainToolBarView.swift */,
+				D6E965082B0F1E8D001BFDA2 /* CallSession.swift */,
+				D6C1F1522B11EAD700E8F3DF /* CallViewController.swift */,
+				D69722BD2B0B7029005B3DA1 /* CallToolBarView.swift */,
 				D6A47EAF2B04FD1F00010B6A /* CallInfoViewController.swift */,
 				D6D389F52B094DD0006CA941 /* VideoCaptureController.swift */,
 				D6D389F72B094E60006CA941 /* CameraVideoCaptureController.swift */,
-				D6D389F92B094EF1006CA941 /* FileVideoCaptureController.swift */,
 				D6D952092B0CEB3C0061401A /* Extensions */,
-				D628EAFB2B0DB7D500DD2C52 /* foreman.mp4 */,
 				D6A49DF92B078939003DFF05 /* usernames.json */,
 				D6A49DFB2B078B2F003DFF05 /* emails.json */,
 				D6F7A8D72B00E0F0009262CD /* Assets.xcassets */,
@@ -251,7 +259,6 @@
 				D6F7A8DB2B00E0F0009262CD /* LaunchScreen.storyboard in Resources */,
 				D6F7A8D82B00E0F0009262CD /* Assets.xcassets in Resources */,
 				D6A49DFA2B078939003DFF05 /* usernames.json in Resources */,
-				D628EAFC2B0DB7D500DD2C52 /* foreman.mp4 in Resources */,
 				D6D1BC172B014AE400BC86AB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,10 +270,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6D389FA2B094EF1006CA941 /* FileVideoCaptureController.swift in Sources */,
 				D6D389F62B094DD0006CA941 /* VideoCaptureController.swift in Sources */,
 				D6F7A8D32B00E0EF009262CD /* MainViewController.swift in Sources */,
-				D69722BE2B0B7029005B3DA1 /* MainToolBarView.swift in Sources */,
+				D69722BE2B0B7029005B3DA1 /* CallToolBarView.swift in Sources */,
+				D6C1F1532B11EAD700E8F3DF /* CallViewController.swift in Sources */,
 				D6FD7F8D2B0A225300A7F832 /* WebRTCSession.swift in Sources */,
 				D6D952082B0CEB1C0061401A /* Logger+Extensions.swift in Sources */,
 				D6F7A8CF2B00E0EF009262CD /* AppDelegate.swift in Sources */,
@@ -275,6 +282,7 @@
 				D62B49BB2B076CAD00A0CF85 /* User.swift in Sources */,
 				D6D8D0682B0E846500E26735 /* SignalingServerSessionDelegate.swift in Sources */,
 				D6D389F82B094E60006CA941 /* CameraVideoCaptureController.swift in Sources */,
+				D6E965092B0F1E8D001BFDA2 /* CallSession.swift in Sources */,
 				D6A47EB02B04FD1F00010B6A /* CallInfoViewController.swift in Sources */,
 				D6D8D0662B0E820700E26735 /* WebRTCSessionDelegate.swift in Sources */,
 				D6F7A8D12B00E0EF009262CD /* SceneDelegate.swift in Sources */,
@@ -430,12 +438,14 @@
 				INFOPLIST_FILE = Palmy/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Palmy;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Palmy needs to access your camera";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Palmy needs to access your microphone";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Palmy needs access to your camera";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Palmy needs access to your microphone";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -470,12 +480,14 @@
 				INFOPLIST_FILE = Palmy/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Palmy;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Palmy needs to access your camera";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Palmy needs to access your microphone";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Palmy needs access to your camera";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Palmy needs access to your microphone";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
