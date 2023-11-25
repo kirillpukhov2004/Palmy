@@ -6,8 +6,6 @@ import FirebaseFirestore
 final class CallViewController: UIViewController {
     var callSession: CallSession
 
-    var videoCaptureController: (any VideoCaptureController)!
-
     private var infoButton: UIButton!
 
     private var callToolBarView: CallToolBarView!
@@ -175,6 +173,9 @@ extension CallViewController: CallSessionDelegate {
 
             roomID = callSession.roomID
             infoButton.isHidden = false
+
+            callSession.startCameraPreview(cameraPreviewView)
+            callSession.startRenderRemoteVideo(remoteVideoView)
         }
     }
 

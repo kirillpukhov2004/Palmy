@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D619539D2B090B70008105C6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D619539C2B090B70008105C6 /* SnapKit */; };
+		D62954402B12862700629AF8 /* CallSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D629543F2B12862700629AF8 /* CallSessionDelegate.swift */; };
 		D62B49BB2B076CAD00A0CF85 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B49BA2B076CAD00A0CF85 /* User.swift */; };
 		D63540F22B07DECB00A46AAE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D63540F12B07DECB00A46AAE /* FirebaseAuth */; };
 		D68622C92B08A8550083943C /* WebRTC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68622C72B08A84F0083943C /* WebRTC.xcframework */; };
@@ -19,8 +20,7 @@
 		D6A49DFC2B078B2F003DFF05 /* emails.json in Resources */ = {isa = PBXBuildFile; fileRef = D6A49DFB2B078B2F003DFF05 /* emails.json */; };
 		D6C1F1532B11EAD700E8F3DF /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C1F1522B11EAD700E8F3DF /* CallViewController.swift */; };
 		D6D1BC172B014AE400BC86AB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6D1BC162B014AE400BC86AB /* GoogleService-Info.plist */; };
-		D6D389F62B094DD0006CA941 /* VideoCaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D389F52B094DD0006CA941 /* VideoCaptureController.swift */; };
-		D6D389F82B094E60006CA941 /* CameraVideoCaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D389F72B094E60006CA941 /* CameraVideoCaptureController.swift */; };
+		D6D389F82B094E60006CA941 /* CameraVideoCapturerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D389F72B094E60006CA941 /* CameraVideoCapturerController.swift */; };
 		D6D8D0662B0E820700E26735 /* WebRTCSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D8D0652B0E820700E26735 /* WebRTCSessionDelegate.swift */; };
 		D6D8D0682B0E846500E26735 /* SignalingServerSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D8D0672B0E846500E26735 /* SignalingServerSessionDelegate.swift */; };
 		D6D952082B0CEB1C0061401A /* Logger+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D952072B0CEB1C0061401A /* Logger+Extensions.swift */; };
@@ -53,6 +53,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D629543F2B12862700629AF8 /* CallSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallSessionDelegate.swift; sourceTree = "<group>"; };
 		D62B49BA2B076CAD00A0CF85 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D68622C72B08A84F0083943C /* WebRTC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = WebRTC.xcframework; sourceTree = "<group>"; };
 		D69722BD2B0B7029005B3DA1 /* CallToolBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallToolBarView.swift; sourceTree = "<group>"; };
@@ -61,8 +62,7 @@
 		D6A49DFB2B078B2F003DFF05 /* emails.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = emails.json; sourceTree = "<group>"; };
 		D6C1F1522B11EAD700E8F3DF /* CallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
 		D6D1BC162B014AE400BC86AB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D6D389F52B094DD0006CA941 /* VideoCaptureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCaptureController.swift; sourceTree = "<group>"; };
-		D6D389F72B094E60006CA941 /* CameraVideoCaptureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVideoCaptureController.swift; sourceTree = "<group>"; };
+		D6D389F72B094E60006CA941 /* CameraVideoCapturerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVideoCapturerController.swift; sourceTree = "<group>"; };
 		D6D8D0652B0E820700E26735 /* WebRTCSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCSessionDelegate.swift; sourceTree = "<group>"; };
 		D6D8D0672B0E846500E26735 /* SignalingServerSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalingServerSessionDelegate.swift; sourceTree = "<group>"; };
 		D6D952072B0CEB1C0061401A /* Logger+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Logger+Extensions.swift"; path = "Palmy/Extensions/Logger+Extensions.swift"; sourceTree = SOURCE_ROOT; };
@@ -117,6 +117,7 @@
 		D6E9650A2B0F1F66001BFDA2 /* WebRTC */ = {
 			isa = PBXGroup;
 			children = (
+				D6D389F72B094E60006CA941 /* CameraVideoCapturerController.swift */,
 				D6D8D0652B0E820700E26735 /* WebRTCSessionDelegate.swift */,
 				D6FD7F8C2B0A225200A7F832 /* WebRTCSession.swift */,
 			);
@@ -157,15 +158,14 @@
 				D62B49BF2B07757A00A0CF85 /* Models */,
 				D6E9650B2B0F1F72001BFDA2 /* SignalingServer */,
 				D6E9650A2B0F1F66001BFDA2 /* WebRTC */,
+				D629543F2B12862700629AF8 /* CallSessionDelegate.swift */,
+				D6E965082B0F1E8D001BFDA2 /* CallSession.swift */,
 				D6F7A8CE2B00E0EF009262CD /* AppDelegate.swift */,
 				D6F7A8D02B00E0EF009262CD /* SceneDelegate.swift */,
 				D6F7A8D22B00E0EF009262CD /* MainViewController.swift */,
-				D6E965082B0F1E8D001BFDA2 /* CallSession.swift */,
 				D6C1F1522B11EAD700E8F3DF /* CallViewController.swift */,
 				D69722BD2B0B7029005B3DA1 /* CallToolBarView.swift */,
 				D6A47EAF2B04FD1F00010B6A /* CallInfoViewController.swift */,
-				D6D389F52B094DD0006CA941 /* VideoCaptureController.swift */,
-				D6D389F72B094E60006CA941 /* CameraVideoCaptureController.swift */,
 				D6D952092B0CEB3C0061401A /* Extensions */,
 				D6A49DF92B078939003DFF05 /* usernames.json */,
 				D6A49DFB2B078B2F003DFF05 /* emails.json */,
@@ -270,18 +270,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6D389F62B094DD0006CA941 /* VideoCaptureController.swift in Sources */,
 				D6F7A8D32B00E0EF009262CD /* MainViewController.swift in Sources */,
 				D69722BE2B0B7029005B3DA1 /* CallToolBarView.swift in Sources */,
 				D6C1F1532B11EAD700E8F3DF /* CallViewController.swift in Sources */,
 				D6FD7F8D2B0A225300A7F832 /* WebRTCSession.swift in Sources */,
 				D6D952082B0CEB1C0061401A /* Logger+Extensions.swift in Sources */,
+				D62954402B12862700629AF8 /* CallSessionDelegate.swift in Sources */,
 				D6F7A8CF2B00E0EF009262CD /* AppDelegate.swift in Sources */,
 				D6FD7F872B09FFE300A7F832 /* FirestoreSignalingServerSession.swift in Sources */,
 				D6FD7F852B09FDFC00A7F832 /* SignalingServerSession.swift in Sources */,
 				D62B49BB2B076CAD00A0CF85 /* User.swift in Sources */,
 				D6D8D0682B0E846500E26735 /* SignalingServerSessionDelegate.swift in Sources */,
-				D6D389F82B094E60006CA941 /* CameraVideoCaptureController.swift in Sources */,
+				D6D389F82B094E60006CA941 /* CameraVideoCapturerController.swift in Sources */,
 				D6E965092B0F1E8D001BFDA2 /* CallSession.swift in Sources */,
 				D6A47EB02B04FD1F00010B6A /* CallInfoViewController.swift in Sources */,
 				D6D8D0662B0E820700E26735 /* WebRTCSessionDelegate.swift in Sources */,

@@ -1,7 +1,7 @@
 import OSLog
 import WebRTC
 
-class CameraVideoCaptureController: VideoCaptureController {
+class CameraVideoCapturerController {
     var capturer: RTCCameraVideoCapturer
 
     init(capturer: RTCCameraVideoCapturer) {

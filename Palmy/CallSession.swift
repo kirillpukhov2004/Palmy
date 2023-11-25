@@ -8,16 +8,6 @@ enum CallSessionConnectionState {
     case connected
 }
 
-protocol CallSessionDelegate: AnyObject {
-    func callSession(_ callSession: CallSession, didChange connectionState: CallSessionConnectionState)
-
-    func callSession(_ callSession: CallSession, didStartCameraCapturing captureSession: AVCaptureSession)
-    func callSessionDidStopCameraCapturing(_ callSession: CallSession)
-
-    func callSession(_ callSession: CallSession, didStartRemoteVideoCapturing videoTrack: RTCVideoTrack)
-    func callSessionDidStopRemoteVideoCapturing(_ callSession: CallSession)
-}
-
 enum CallSessionError: Error {
     case roomNotFound
 }
@@ -25,8 +15,6 @@ enum CallSessionError: Error {
 class CallSession: NSObject {
     private let signalingServerSession: SignalingServerSession
     private let webRTCSession = WebRTCSession()
-
-    private var videoCaptureController: (any VideoCaptureController)?
 
     weak var delegate: CallSessionDelegate?
 
@@ -133,72 +121,44 @@ class CallSession: NSObject {
     func end() {
         stopMediaCapturing()
         signalingServerSession.leaveRoom()
-
         webRTCSession.disconnect()
+
         delegate?.callSessionDidStopRemoteVideoCapturing(self)
 
         roomID = nil
     }
 
-    func setMicrophoneEnabled(_ isAudioEnabled: Bool) {
-        webRTCSession.localAudioTrack?.isEnabled = isAudioEnabled
+    func startCameraPreview(_ cameraPreviewView: RTCCameraPreviewView) {
+        webRTCSession.startCameraPreview(cameraPreviewView)
     }
 
-    func setCameraEnabled(_ isVideoEnabled: Bool) {
-        webRTCSession.localVideoTrack?.isEnabled = isVideoEnabled
+    func startRenderRemoteVideo(_ renderer: RTCVideoRenderer) {
+        webRTCSession.startRenderRemoteVideo(renderer)
+    }
+
+    func setMicrophoneEnabled(_ isMicrophoneEnabled: Bool) {
+        do {
+            try webRTCSession.configureAudioSession()
+            try webRTCSession.setMicrophoneEnabled(isMicrophoneEnabled)
+        } catch {
+            Logger.general.fault("\(error.localizedDescription)")
+        }
+    }
+
+    func setCameraEnabled(_ isCameraEnabled: Bool) {
+        webRTCSession.setCameraEnabled(isCameraEnabled)
     }
 
     // MARK: - Private Functions
 
     private func startMediaCapturing() {
-        if let cameraVideoCapturer = webRTCSession.cameraVideoCapturer {
-            videoCaptureController = CameraVideoCaptureController(capturer: cameraVideoCapturer)
-            videoCaptureController!.startCapture()
-
-            delegate?.callSession(self, didStartCameraCapturing: cameraVideoCapturer.captureSession)
-        }
-
-        if let audioSession = webRTCSession.audioSession {
-            let audioSessionConfiguration = RTCAudioSessionConfiguration()
-            audioSessionConfiguration.categoryOptions = .duckOthers
-            audioSessionConfiguration.category = AVAudioSession.Category.playAndRecord.rawValue
-            audioSessionConfiguration.mode = AVAudioSession.Mode.videoChat.rawValue
-
-            audioSession.lockForConfiguration()
-
-            do {
-                try audioSession.setConfiguration(audioSessionConfiguration)
-                try audioSession.setActive(true)
-            } catch {
-                Logger.general.error("\(error.localizedDescription)")
-            }
-
-            audioSession.unlockForConfiguration()
-        }
-
-        if let remoteVideoTrack = webRTCSession.remoteVideoTrack {
-            delegate?.callSession(self, didStartRemoteVideoCapturing: remoteVideoTrack)
-        }
+        setMicrophoneEnabled(true)
+        setCameraEnabled(true)
     }
 
     private func stopMediaCapturing() {
-        if let audioSession = webRTCSession.audioSession {
-            audioSession.lockForConfiguration()
-
-            do {
-                try webRTCSession.audioSession?.setActive(false)
-            } catch {
-                Logger.general.error("\(error.localizedDescription)")
-            }
-
-            audioSession.unlockForConfiguration()
-        }
-
-
-        if let videoCaptureController = videoCaptureController as? CameraVideoCaptureController {
-            videoCaptureController.stopCapture()
-            delegate?.callSessionDidStopCameraCapturing(self)
-        }
+        setMicrophoneEnabled(false)
+        setCameraEnabled(false)
     }
 }
 

@@ -26,16 +26,14 @@ class WebRTCSession: NSObject {
 
     weak var delegate: (any WebRTCSessionDelegate)?
 
-    private(set) var peerConnection: RTCPeerConnection?
+    private var peerConnection: RTCPeerConnection?
 
-    private(set) var audioSession: RTCAudioSession?
+    private var cameraVideoCapturerController: CameraVideoCapturerController?
 
-    private(set) var cameraVideoCapturer: RTCCameraVideoCapturer?
+    private var localAudioTrack: RTCAudioTrack?
+    private var localVideoTrack: RTCVideoTrack?
 
-    private(set) var localAudioTrack: RTCAudioTrack?
-    private(set) var localVideoTrack: RTCVideoTrack?
-
-    private(set) var remoteVideoTrack: RTCVideoTrack?
+    private var remoteVideoTrack: RTCVideoTrack?
 
     // MARK: - Public Functions
 
@@ -47,9 +45,12 @@ class WebRTCSession: NSObject {
     func disconnect() {
         peerConnection?.close()
         peerConnection = nil
-        cameraVideoCapturer = nil
+
+        cameraVideoCapturerController = nil
+
         localAudioTrack = nil
         localVideoTrack = nil
+
         remoteVideoTrack = nil
     }
 
@@ -111,12 +112,59 @@ class WebRTCSession: NSObject {
         }
     }
 
-    func startRenderLocalVideo(_ videoRenderer: RTCVideoRenderer) {
-        localVideoTrack?.add(videoRenderer)
+
+    func configureAudioSession() throws {
+        let audioSession = RTCAudioSession.sharedInstance()
+
+        let audioSessionConfiguration = RTCAudioSessionConfiguration()
+        audioSessionConfiguration.categoryOptions = .duckOthers
+        audioSessionConfiguration.category = AVAudioSession.Category.playAndRecord.rawValue
+        audioSessionConfiguration.mode = AVAudioSession.Mode.videoChat.rawValue
+
+        audioSession.lockForConfiguration()
+
+        try audioSession.setConfiguration(audioSessionConfiguration)
+
+        audioSession.unlockForConfiguration()
     }
 
-    func startRenderRemoteVideo(_ videoRenderer: RTCVideoRenderer) {
-        remoteVideoTrack?.add(videoRenderer)
+    func setMicrophoneEnabled(_ isMicrophoneEnabled: Bool) throws {
+        let audioSession = RTCAudioSession.sharedInstance()
+
+        audioSession.lockForConfiguration()
+
+        try audioSession.setActive(isMicrophoneEnabled)
+
+        audioSession.unlockForConfiguration() 
+
+        localAudioTrack?.isEnabled = isMicrophoneEnabled
+    }
+
+    func setCameraEnabled(_ isCameraEnabled: Bool) {
+        guard let cameraVideoCapturerController = cameraVideoCapturerController else {
+            return
+        }
+
+        if isCameraEnabled {
+            cameraVideoCapturerController.startCapture()
+        } else {
+            cameraVideoCapturerController.stopCapture()
+        }
+
+        localVideoTrack?.isEnabled = isCameraEnabled
+    }
+
+
+    func startCameraPreview(_ cameraPreviewView: RTCCameraPreviewView) {
+        guard let cameraVideoCapturerController = cameraVideoCapturerController else {
+            return
+        }
+
+        cameraPreviewView.captureSession = cameraVideoCapturerController.capturer.captureSession
+    }
+
+    func startRenderRemoteVideo(_ renderer: RTCVideoRenderer) {
+        remoteVideoTrack?.add(renderer)
     }
 
     // MARK: - Private Functions
@@ -124,15 +172,11 @@ class WebRTCSession: NSObject {
     private func setupPeerConnection() {
         let configuration = RTCConfiguration()
         configuration.iceServers = [RTCIceServer(urlStrings: Self.iceServers)]
-        configuration.continualGatheringPolicy = .gatherContinually
-        configuration.sdpSemantics = .unifiedPlan
 
-        peerConnection = Self.factory.peerConnection(with: configuration, constraints: Self.defaultMediaConstraints, delegate: self)!
+        peerConnection = Self.factory.peerConnection(with: configuration, constraints: Self.defaultMediaConstraints, delegate: self)
     }
 
     private func setupMediaSenders() {
-        audioSession = RTCAudioSession.sharedInstance()
-
         localAudioTrack = createLocalAudioTrack()
         peerConnection?.add(localAudioTrack!, streamIds: ["stream"])
 
@@ -151,7 +195,8 @@ class WebRTCSession: NSObject {
     private func createLocalVideoTrack() -> RTCVideoTrack {
         let videoSource = Self.factory.videoSource()
 
-        cameraVideoCapturer = RTCCameraVideoCapturer(delegate: videoSource)
+        let cameraVideoCapturer = RTCCameraVideoCapturer(delegate: videoSource)
+        cameraVideoCapturerController = CameraVideoCapturerController(capturer: cameraVideoCapturer)
 
         return Self.factory.videoTrack(with: videoSource, trackId: "video0")
     }
