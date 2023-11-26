@@ -67,7 +67,7 @@ class CallToolBarView: UIView {
         cameraToggleButton.layer.masksToBounds = true
         addSubview(cameraToggleButton)
 
-        let cameraToggleButtonBackgroundVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterialDark))
+        let cameraToggleButtonBackgroundVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .systemThinMaterialDark))
         cameraToggleButtonBackgroundVisualEffectView.isUserInteractionEnabled = false
         cameraToggleButton.insertSubview(cameraToggleButtonBackgroundVisualEffectView, belowSubview: cameraToggleButton.imageView!)
         cameraToggleButtonBackgroundVisualEffectView.snp.makeConstraints { make in
@@ -84,7 +84,7 @@ class CallToolBarView: UIView {
         microphoneToggleButton.layer.masksToBounds = true
         addSubview(microphoneToggleButton)
 
-        let microphoneTogglButtonBackgroundVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterialDark))
+        let microphoneTogglButtonBackgroundVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .systemThinMaterialDark))
         microphoneTogglButtonBackgroundVisualEffectView.isUserInteractionEnabled = false
         microphoneToggleButton.insertSubview(microphoneTogglButtonBackgroundVisualEffectView, belowSubview: microphoneToggleButton.imageView!)
         microphoneTogglButtonBackgroundVisualEffectView.snp.makeConstraints { make in

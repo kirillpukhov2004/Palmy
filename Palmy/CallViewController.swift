@@ -8,6 +8,8 @@ final class CallViewController: UIViewController {
 
     private var infoButton: UIButton!
 
+    private var shareButton: UIButton!
+
     private var callToolBarView: CallToolBarView!
 
     private var cameraPreviewView: RTCCameraPreviewView!
@@ -64,6 +66,26 @@ final class CallViewController: UIViewController {
         infoButton.isHidden = true
         view.addSubview(infoButton)
 
+        shareButton = UIButton(type: .custom)
+        shareButton.addTarget(self, action: #selector(shareButtonPressed), for: .touchUpInside)
+        let shareButtonSymbolConfiguration = UIImage.SymbolConfiguration(font: .systemFont(ofSize: 18, weight: .medium))
+        shareButton.setImage(UIImage(systemName: "square.and.arrow.up", withConfiguration: shareButtonSymbolConfiguration)!, for: .normal)
+        shareButton.contentHorizontalAlignment = .center
+        shareButton.contentVerticalAlignment = .center
+        shareButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 4, right: 0)
+        shareButton.backgroundColor = .clear
+        shareButton.tintColor = .white
+        shareButton.layer.cornerRadius = 20
+        shareButton.layer.masksToBounds = true
+        view.addSubview(shareButton)
+
+        let shareButtonVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .systemThinMaterialDark))
+        shareButtonVisualEffectView.isUserInteractionEnabled = false
+        shareButton.insertSubview(shareButtonVisualEffectView, belowSubview: shareButton.imageView!)
+        shareButtonVisualEffectView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
         callToolBarView = CallToolBarView()
         callToolBarView.delegate = self
 
@@ -77,6 +99,12 @@ final class CallViewController: UIViewController {
         remoteVideoView.layer.cornerRadius = 13
         remoteVideoView.layer.masksToBounds = true
         view.insertSubview(remoteVideoView, aboveSubview: cameraPreviewView)
+
+        shareButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(16)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(8)
+            make.width.height.equalTo(40)
+        }
 
         cameraPreviewView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -117,6 +145,14 @@ final class CallViewController: UIViewController {
         let room = Room(id: roomID!, participants: [])
 
         let viewController = RoomDetailsViewController(room: room)
+        present(viewController, animated: true)
+    }
+
+    @objc private func shareButtonPressed() {
+        guard let roomID = roomID else { return }
+
+        let viewController = UIActivityViewController(activityItems: [roomID], applicationActivities: nil)
+
         present(viewController, animated: true)
     }
 
@@ -172,7 +208,6 @@ extension CallViewController: CallSessionDelegate {
             assert(callSession.roomID != nil)
 
             roomID = callSession.roomID
-            infoButton.isHidden = false
 
             callSession.startCameraPreview(cameraPreviewView)
             callSession.startRenderRemoteVideo(remoteVideoView)
@@ -191,8 +226,6 @@ extension CallViewController: CallSessionDelegate {
         videoTrack.add(remoteVideoView)
     }
 
-    func callSessionDidStopRemoteVideoCapturing(_ callSession: CallSession) {
-
-    }
+    func callSessionDidStopRemoteVideoCapturing(_ callSession: CallSession) {}
 }
 

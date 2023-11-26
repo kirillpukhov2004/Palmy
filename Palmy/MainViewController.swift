@@ -24,6 +24,10 @@ class MainViewController: UIViewController {
         newCallButton.backgroundColor = UIColor(cgColor: CGColor(red: 28/255, green: 190/255, blue: 76/255, alpha: 1))
         newCallButton.layer.cornerRadius = 13
         newCallButton.layer.cornerCurve = .continuous
+        newCallButton.layer.shadowColor = CGColor(red: 28/255, green: 190/255, blue: 76/255, alpha: 1)
+        newCallButton.layer.shadowOffset = CGSize(width: 0, height: 0)
+        newCallButton.layer.shadowOpacity = 0.5
+        newCallButton.layer.shadowRadius = 3
         containerView.addSubview(newCallButton)
 
         joinCallButton = UIButton(type: .custom)
@@ -34,6 +38,10 @@ class MainViewController: UIViewController {
         joinCallButton.backgroundColor = UIColor(cgColor: CGColor(red: 11/255, green: 132/255, blue: 255/255, alpha: 1))
         joinCallButton.layer.cornerRadius = 13
         joinCallButton.layer.cornerCurve = .continuous
+        joinCallButton.layer.shadowColor = CGColor(red: 11/255, green: 132/255, blue: 255/255, alpha: 1)
+        joinCallButton.layer.shadowOffset = CGSize(width: 0, height: 0)
+        joinCallButton.layer.shadowOpacity = 0.5
+        joinCallButton.layer.shadowRadius = 3
         containerView.addSubview(joinCallButton)
 
         containerView.snp.makeConstraints { make in
