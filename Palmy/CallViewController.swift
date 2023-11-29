@@ -4,7 +4,21 @@ import WebRTC
 import FirebaseFirestore
 
 final class CallViewController: UIViewController {
-    var callSession: CallSession
+    private let callController: CallController
+
+    private var isMicrophoneEnabled: Bool {
+        didSet {
+            callController.setMicrophoneEnabled(isMicrophoneEnabled)
+        }
+    }
+
+    private var isCameraEnabled: Bool {
+        didSet {
+            callController.setCameraEnabled(isCameraEnabled)
+        }
+    }
+
+    private var cameraPosition: AVCaptureDevice.Position
 
     private var infoButton: UIButton!
 
@@ -13,47 +27,51 @@ final class CallViewController: UIViewController {
     private var callToolBarView: CallToolBarView!
 
     private var cameraPreviewView: RTCCameraPreviewView!
+    
     private var remoteVideoView: RTCMTLVideoView!
 
-    private var isMicrophoneEnabled: Bool {
-        didSet {
-            callSession.setMicrophoneEnabled(isMicrophoneEnabled)
-        }
-    }
-
-    private var isCameraEnabled: Bool {
-        didSet {
-            callSession.setCameraEnabled(isCameraEnabled)
-        }
-    }
-
-    private var cameraPosition: AVCaptureDevice.Position
-
-    var roomID: String?
+    // MARK: - Lifecycle
 
     init(roomID: String?) {
-        self.roomID = roomID
-
         isMicrophoneEnabled = true
         isCameraEnabled = true
         cameraPosition = .front
-
-        let firestore = Firestore.firestore()
-        callSession = CallSession(signalingServerSession: FirestoreSignalingServerSession(firestore: firestore))
+        
+        let signalingServerSession = FirestoreSignalingServerSession(firestore: .firestore())
+        callController = CallController(roomID: roomID, signalingServerSession: signalingServerSession)
 
         super.init(nibName: nil, bundle: nil)
 
-        callSession.delegate = self
+        callController.delegate = self
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func loadView() {
         view = UIView()
         view.backgroundColor = .systemBackground
 
+        setupViews()
+        setupConstraints()
+    }
+
+    override func viewDidLoad() {
+        startCall()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+
+    // MARK: - Private Functions
+
+    private func setupViews() {
         infoButton = UIButton(type: .custom)
         infoButton.addTarget(self, action: #selector(infoButtonPressed), for: .touchUpInside)
         infoButton.setImage(UIImage(systemName: "info.circle")!, for: .normal)
@@ -99,7 +117,9 @@ final class CallViewController: UIViewController {
         remoteVideoView.layer.cornerRadius = 13
         remoteVideoView.layer.masksToBounds = true
         view.insertSubview(remoteVideoView, aboveSubview: cameraPreviewView)
+    }
 
+    private func setupConstraints() {
         shareButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(16)
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(8)
@@ -129,43 +149,38 @@ final class CallViewController: UIViewController {
         }
     }
 
-    override func viewDidLoad() {
-        startCall()
+    private func startCall() {
+        callController.start()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(true, animated: false)
+    private func endCall() {
+        callController.end()
+
+        dismiss(animated: true)
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(false, animated: false)
-    }
+    // MARK: - Actions
 
     @objc private func infoButtonPressed() {
-        let room = Room(id: roomID!, participants: [])
+        guard let roomID = callController.roomID else { return }
+
+        let room = Room(id: roomID, participants: [])
 
         let viewController = RoomDetailsViewController(room: room)
+
         present(viewController, animated: true)
     }
 
     @objc private func shareButtonPressed() {
-        guard let roomID = roomID else { return }
+        guard let roomID = callController.roomID else { return }
 
         let viewController = UIActivityViewController(activityItems: [roomID], applicationActivities: nil)
 
         present(viewController, animated: true)
     }
+}
 
-    private func startCall() {
-        callSession.start(with: roomID)
-    }
-
-    private func endCall() {
-        callSession.end()
-
-        dismiss(animated: true)
-    }
-
+extension CallViewController {
     private enum Constants {
         static let standardCircleButtonRadius = CGFloat(64)
         static let standardCircleButtonCornerRadius = CGFloat(32)
@@ -191,10 +206,10 @@ extension CallViewController: CallToolBarViewDelegate {
     }
 }
 
-// MARK: - CallSessionDelegate
+// MARK: - CallControllerDelegate
 
-extension CallViewController: CallSessionDelegate {
-    func callSession(_ callSession: CallSession, didChange connectionState: CallSessionConnectionState) {
+extension CallViewController: CallControllerDelegate {
+    func callController(_ callController: CallController, didChange connectionState: CallControllerConnectionState) {
         switch connectionState {
         case .disconnected:
             Logger.general.log("Call session state did change to disconnected")
@@ -205,27 +220,23 @@ extension CallViewController: CallSessionDelegate {
         case .connected:
             Logger.general.log("Call session state did change to connected")
             
-            assert(callSession.roomID != nil)
-
-            roomID = callSession.roomID
-
-            callSession.startCameraPreview(cameraPreviewView)
-            callSession.startRenderRemoteVideo(remoteVideoView)
+            callController.startCameraPreview(cameraPreviewView)
+            callController.startRenderRemoteVideo(remoteVideoView)
         }
     }
 
-    func callSession(_ callSession: CallSession, didStartCameraCapturing captureSession: AVCaptureSession) {
+    func callController(_ callController: CallController, didStartCameraCapturing captureSession: AVCaptureSession) {
         cameraPreviewView.captureSession = captureSession
     }
 
-    func callSessionDidStopCameraCapturing(_ callSession: CallSession) {
+    func callControllerDidStopCameraCapturing(_ callController: CallController) {
 
     }
 
-    func callSession(_ callSession: CallSession, didStartRemoteVideoCapturing videoTrack: RTCVideoTrack) {
+    func callController(_ callController: CallController, didStartRemoteVideoCapturing videoTrack: RTCVideoTrack) {
         videoTrack.add(remoteVideoView)
     }
 
-    func callSessionDidStopRemoteVideoCapturing(_ callSession: CallSession) {}
+    func callControllerDidStopRemoteVideoCapturing(_ callController: CallController) {}
 }
 

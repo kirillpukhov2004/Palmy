@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D6074D8F2B171E2D00FE5121 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6074D8E2B171E2D00FE5121 /* AccountViewController.swift */; };
+		D6074D952B17205E00FE5121 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6074D942B17205E00FE5121 /* AccountController.swift */; };
+		D6074D972B1720DF00FE5121 /* AccountControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6074D962B1720DF00FE5121 /* AccountControllerDelegate.swift */; };
 		D619539D2B090B70008105C6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D619539C2B090B70008105C6 /* SnapKit */; };
-		D62954402B12862700629AF8 /* CallSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D629543F2B12862700629AF8 /* CallSessionDelegate.swift */; };
+		D62954402B12862700629AF8 /* CallControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D629543F2B12862700629AF8 /* CallControllerDelegate.swift */; };
 		D62954432B133C9E00629AF8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D62954422B133C9E00629AF8 /* FirebaseCrashlytics */; };
 		D62B49BB2B076CAD00A0CF85 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B49BA2B076CAD00A0CF85 /* User.swift */; };
 		D63540F22B07DECB00A46AAE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D63540F12B07DECB00A46AAE /* FirebaseAuth */; };
@@ -28,7 +31,8 @@
 		D6D8D0662B0E820700E26735 /* WebRTCSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D8D0652B0E820700E26735 /* WebRTCSessionDelegate.swift */; };
 		D6D8D0682B0E846500E26735 /* SignalingServerSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D8D0672B0E846500E26735 /* SignalingServerSessionDelegate.swift */; };
 		D6D952082B0CEB1C0061401A /* Logger+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D952072B0CEB1C0061401A /* Logger+Extensions.swift */; };
-		D6E965092B0F1E8D001BFDA2 /* CallSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E965082B0F1E8D001BFDA2 /* CallSession.swift */; };
+		D6DE38282B15E12500DFA39F /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DE38272B15E12500DFA39F /* AuthTextField.swift */; };
+		D6E965092B0F1E8D001BFDA2 /* CallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E965082B0F1E8D001BFDA2 /* CallController.swift */; };
 		D6F7A8CF2B00E0EF009262CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F7A8CE2B00E0EF009262CD /* AppDelegate.swift */; };
 		D6F7A8D12B00E0EF009262CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F7A8D02B00E0EF009262CD /* SceneDelegate.swift */; };
 		D6F7A8D32B00E0EF009262CD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F7A8D22B00E0EF009262CD /* MainViewController.swift */; };
@@ -57,7 +61,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D629543F2B12862700629AF8 /* CallSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallSessionDelegate.swift; sourceTree = "<group>"; };
+		D6074D8E2B171E2D00FE5121 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		D6074D942B17205E00FE5121 /* AccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
+		D6074D962B1720DF00FE5121 /* AccountControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountControllerDelegate.swift; sourceTree = "<group>"; };
+		D629543F2B12862700629AF8 /* CallControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallControllerDelegate.swift; sourceTree = "<group>"; };
 		D62B49BA2B076CAD00A0CF85 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D667429B2B1383EA00E75E3D /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		D68622C72B08A84F0083943C /* WebRTC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = WebRTC.xcframework; sourceTree = "<group>"; };
@@ -73,7 +80,8 @@
 		D6D8D0652B0E820700E26735 /* WebRTCSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCSessionDelegate.swift; sourceTree = "<group>"; };
 		D6D8D0672B0E846500E26735 /* SignalingServerSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalingServerSessionDelegate.swift; sourceTree = "<group>"; };
 		D6D952072B0CEB1C0061401A /* Logger+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Logger+Extensions.swift"; path = "Palmy/Extensions/Logger+Extensions.swift"; sourceTree = SOURCE_ROOT; };
-		D6E965082B0F1E8D001BFDA2 /* CallSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallSession.swift; sourceTree = "<group>"; };
+		D6DE38272B15E12500DFA39F /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
+		D6E965082B0F1E8D001BFDA2 /* CallController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallController.swift; sourceTree = "<group>"; };
 		D6F7A8CB2B00E0EF009262CD /* Palmy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Palmy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F7A8CE2B00E0EF009262CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6F7A8D02B00E0EF009262CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,31 +113,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D62B49BF2B07757A00A0CF85 /* Models */ = {
+		D6074D932B17203200FE5121 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				D6074D942B17205E00FE5121 /* AccountController.swift */,
+				D6074D962B1720DF00FE5121 /* AccountControllerDelegate.swift */,
 				D62B49BA2B076CAD00A0CF85 /* User.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		D667429A2B1383CA00E75E3D /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				D6BE887A2B14A27D00BD1FD6 /* AuthController.swift */,
+				D6BE887C2B14A54900BD1FD6 /* AuthControllerDelegate.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		D667429D2B13859D00E75E3D /* Call */ = {
+			isa = PBXGroup;
+			children = (
+				D6E965082B0F1E8D001BFDA2 /* CallController.swift */,
+				D629543F2B12862700629AF8 /* CallControllerDelegate.swift */,
 				D6FD7F882B0A01C000A7F832 /* Room.swift */,
 			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		D667429A2B1383CA00E75E3D /* Authorization */ = {
-			isa = PBXGroup;
-			children = (
-				D6BE887C2B14A54900BD1FD6 /* AuthControllerDelegate.swift */,
-				D6BE887A2B14A27D00BD1FD6 /* AuthController.swift */,
-			);
-			path = Authorization;
-			sourceTree = "<group>";
-		};
-		D667429D2B13859D00E75E3D /* CallSession */ = {
-			isa = PBXGroup;
-			children = (
-				D629543F2B12862700629AF8 /* CallSessionDelegate.swift */,
-				D6E965082B0F1E8D001BFDA2 /* CallSession.swift */,
-			);
-			path = CallSession;
+			path = Call;
 			sourceTree = "<group>";
 		};
 		D6D952092B0CEB3C0061401A /* Extensions */ = {
@@ -143,9 +153,9 @@
 		D6E9650A2B0F1F66001BFDA2 /* WebRTC */ = {
 			isa = PBXGroup;
 			children = (
-				D6D389F72B094E60006CA941 /* CameraVideoCapturerController.swift */,
-				D6D8D0652B0E820700E26735 /* WebRTCSessionDelegate.swift */,
 				D6FD7F8C2B0A225200A7F832 /* WebRTCSession.swift */,
+				D6D8D0652B0E820700E26735 /* WebRTCSessionDelegate.swift */,
+				D6D389F72B094E60006CA941 /* CameraVideoCapturerController.swift */,
 			);
 			path = WebRTC;
 			sourceTree = "<group>";
@@ -181,18 +191,20 @@
 		D6F7A8CD2B00E0EF009262CD /* Palmy */ = {
 			isa = PBXGroup;
 			children = (
-				D62B49BF2B07757A00A0CF85 /* Models */,
 				D6E9650B2B0F1F72001BFDA2 /* SignalingServer */,
 				D6E9650A2B0F1F66001BFDA2 /* WebRTC */,
-				D667429D2B13859D00E75E3D /* CallSession */,
-				D667429A2B1383CA00E75E3D /* Authorization */,
+				D667429D2B13859D00E75E3D /* Call */,
+				D667429A2B1383CA00E75E3D /* Auth */,
+				D6074D932B17203200FE5121 /* Account */,
 				D6F7A8CE2B00E0EF009262CD /* AppDelegate.swift */,
 				D6F7A8D02B00E0EF009262CD /* SceneDelegate.swift */,
 				D667429B2B1383EA00E75E3D /* AuthViewController.swift */,
+				D6074D8E2B171E2D00FE5121 /* AccountViewController.swift */,
 				D6F7A8D22B00E0EF009262CD /* MainViewController.swift */,
 				D6C1F1522B11EAD700E8F3DF /* CallViewController.swift */,
-				D69722BD2B0B7029005B3DA1 /* CallToolBarView.swift */,
 				D6A47EAF2B04FD1F00010B6A /* CallInfoViewController.swift */,
+				D6DE38272B15E12500DFA39F /* AuthTextField.swift */,
+				D69722BD2B0B7029005B3DA1 /* CallToolBarView.swift */,
 				D6D952092B0CEB3C0061401A /* Extensions */,
 				D6A49DF92B078939003DFF05 /* usernames.json */,
 				D6A49DFB2B078B2F003DFF05 /* emails.json */,
@@ -300,12 +312,14 @@
 			files = (
 				D6F7A8D32B00E0EF009262CD /* MainViewController.swift in Sources */,
 				D6BE887B2B14A27D00BD1FD6 /* AuthController.swift in Sources */,
+				D6074D972B1720DF00FE5121 /* AccountControllerDelegate.swift in Sources */,
 				D69722BE2B0B7029005B3DA1 /* CallToolBarView.swift in Sources */,
+				D6074D952B17205E00FE5121 /* AccountController.swift in Sources */,
 				D6BE887D2B14A54900BD1FD6 /* AuthControllerDelegate.swift in Sources */,
 				D6C1F1532B11EAD700E8F3DF /* CallViewController.swift in Sources */,
 				D6FD7F8D2B0A225300A7F832 /* WebRTCSession.swift in Sources */,
 				D6D952082B0CEB1C0061401A /* Logger+Extensions.swift in Sources */,
-				D62954402B12862700629AF8 /* CallSessionDelegate.swift in Sources */,
+				D62954402B12862700629AF8 /* CallControllerDelegate.swift in Sources */,
 				D6F7A8CF2B00E0EF009262CD /* AppDelegate.swift in Sources */,
 				D667429C2B1383EA00E75E3D /* AuthViewController.swift in Sources */,
 				D6FD7F872B09FFE300A7F832 /* FirestoreSignalingServerSession.swift in Sources */,
@@ -313,12 +327,14 @@
 				D62B49BB2B076CAD00A0CF85 /* User.swift in Sources */,
 				D6D8D0682B0E846500E26735 /* SignalingServerSessionDelegate.swift in Sources */,
 				D6D389F82B094E60006CA941 /* CameraVideoCapturerController.swift in Sources */,
-				D6E965092B0F1E8D001BFDA2 /* CallSession.swift in Sources */,
+				D6E965092B0F1E8D001BFDA2 /* CallController.swift in Sources */,
+				D6074D8F2B171E2D00FE5121 /* AccountViewController.swift in Sources */,
 				D6A47EB02B04FD1F00010B6A /* CallInfoViewController.swift in Sources */,
 				D6D8D0662B0E820700E26735 /* WebRTCSessionDelegate.swift in Sources */,
 				D6F7A8D12B00E0EF009262CD /* SceneDelegate.swift in Sources */,
 				D6FD7F892B0A01C000A7F832 /* Room.swift in Sources */,
 				D6FD7F8B2B0A01E500A7F832 /* SignalingServerMessage.swift in Sources */,
+				D6DE38282B15E12500DFA39F /* AuthTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,7 +474,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -487,6 +503,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kirillpukhov2004.Palmy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
@@ -502,7 +519,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -531,6 +548,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kirillpukhov2004.Palmy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;

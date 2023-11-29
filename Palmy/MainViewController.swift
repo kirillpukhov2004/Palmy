@@ -6,13 +6,24 @@ import FirebaseFirestore
 
 class MainViewController: UIViewController {
     private var containerView: UIView!
+
     private var newCallButton: UIButton!
+
     private var joinCallButton: UIButton!
+
+    // MARK: - Lifecycle
 
     override func loadView() {
         view = UIView()
         view.backgroundColor = .systemBackground
 
+        setupViews()
+        setupConstraints()
+    }
+
+    // MARK: - Private Functions
+
+    private func setupViews() {
         containerView = UIView()
         view.addSubview(containerView)
 
@@ -43,7 +54,9 @@ class MainViewController: UIViewController {
         joinCallButton.layer.shadowOpacity = 0.5
         joinCallButton.layer.shadowRadius = 3
         containerView.addSubview(joinCallButton)
+    }
 
+    private func setupConstraints() {
         containerView.snp.makeConstraints { make in
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(16)
             make.width.equalTo(332)
@@ -63,6 +76,8 @@ class MainViewController: UIViewController {
             make.width.equalTo(150)
         }
     }
+
+    // MARK: - Actions
 
     @objc private func newCallButtonPressed() {
         let callViewController = CallViewController(roomID: nil)

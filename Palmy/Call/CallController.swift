@@ -2,31 +2,34 @@ import OSLog
 import FirebaseFirestore
 import WebRTC
 
-enum CallSessionConnectionState {
+enum CallControllerConnectionState {
     case disconnected
     case connecting
     case connected
 }
 
-enum CallSessionError: Error {
+enum CallControllerError: Error {
     case roomNotFound
 }
 
-class CallSession: NSObject {
+class CallController: NSObject {
     private let signalingServerSession: SignalingServerSession
+    
     private let webRTCSession = WebRTCSession()
 
-    weak var delegate: CallSessionDelegate?
+    private(set) var roomID: String?
 
-    var roomID: String?
+    weak var delegate: CallControllerDelegate?
 
-    var connectionState: CallSessionConnectionState {
+    var connectionState: CallControllerConnectionState {
         didSet {
-            delegate?.callSession(self, didChange: connectionState)
+            delegate?.callController(self, didChange: connectionState)
         }
     }
 
-    init(signalingServerSession: SignalingServerSession) {
+    init(roomID: String?, signalingServerSession: SignalingServerSession) {
+        self.roomID = roomID
+
         self.signalingServerSession = signalingServerSession
         
         self.connectionState = .disconnected
@@ -39,7 +42,7 @@ class CallSession: NSObject {
 
     // MARK: - Public Functions
 
-    func start(with roomID: String?) {
+    func start() {
         connectionState = .connecting
 
         webRTCSession.connect()
@@ -123,7 +126,7 @@ class CallSession: NSObject {
         signalingServerSession.leaveRoom()
         webRTCSession.disconnect()
 
-        delegate?.callSessionDidStopRemoteVideoCapturing(self)
+        delegate?.callControllerDidStopRemoteVideoCapturing(self)
 
         roomID = nil
     }
@@ -164,7 +167,7 @@ class CallSession: NSObject {
 
 // MARK: - WebRTCSessionDelegate
 
-extension CallSession: WebRTCSessionDelegate {
+extension CallController: WebRTCSessionDelegate {
     func webRTCSession(_ webRTCSession: WebRTCSession, didGenerate iceCandidate: RTCIceCandidate) {
         do {
             let message = try SignalingServerMessage(iceCandidate)
@@ -178,7 +181,7 @@ extension CallSession: WebRTCSessionDelegate {
 
 // MARK: - SignalingServerSessionDelegate
 
-extension CallSession: SignalingServerSessionDelegate {
+extension CallController: SignalingServerSessionDelegate {
     func signalingServerSession(_ signalingServerSession: SignalingServerSession, didRecieve remoteSessionDescription: RTCSessionDescription) {
         webRTCSession.setRemoteSessionDescription(remoteSessionDescription) { error in
             if let error = error {
@@ -198,7 +201,7 @@ extension CallSession: SignalingServerSessionDelegate {
 
 // MARK: - RTCAudioSessionDelegate
 
-extension CallSession: RTCAudioSessionDelegate {
+extension CallController: RTCAudioSessionDelegate {
     func audioSessionDidStartPlayOrRecord(_ session: RTCAudioSession) {
         Logger.general.log("\(#function)")
     }
