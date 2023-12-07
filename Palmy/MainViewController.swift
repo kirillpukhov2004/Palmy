@@ -11,6 +11,10 @@ class MainViewController: UIViewController {
 
     private var joinCallButton: UIButton!
 
+    private var userImageView: UIView!
+
+    private var usernameLabel: UILabel!
+
     // MARK: - Lifecycle
 
     override func loadView() {
@@ -54,6 +58,12 @@ class MainViewController: UIViewController {
         joinCallButton.layer.shadowOpacity = 0.5
         joinCallButton.layer.shadowRadius = 3
         containerView.addSubview(joinCallButton)
+
+        userImageView = UIImageView()
+        userImageView.contentMode = .scaleAspectFill
+
+        usernameLabel = UILabel()
+        usernameLabel.font = .systemFont(ofSize: 11, weight: .regular)
     }
 
     private func setupConstraints() {
@@ -74,6 +84,17 @@ class MainViewController: UIViewController {
             make.trailing.bottom.equalToSuperview()
             make.height.equalTo(55)
             make.width.equalTo(150)
+        }
+
+        userImageView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.centerX.equalToSuperview()
+            make.width.height.equalTo(40)
+        }
+
+        usernameLabel.snp.makeConstraints { make in
+            make.top.equalTo(userImageView.snp.bottom).offset(3)
+            make.centerX.equalToSuperview()
         }
     }
 

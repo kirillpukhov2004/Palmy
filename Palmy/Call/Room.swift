@@ -4,7 +4,7 @@ struct Room: Codable {
     var participants: [Participant]
 
     struct Participant: Codable {
-        var user: User
+        var user: UserAccount
 
         var isHost: Bool
         var isVideoEnabled: Bool

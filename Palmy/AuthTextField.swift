@@ -44,7 +44,7 @@ class AuthTextField: UIView {
 
     private func setupViews() {
         titleLabel = UILabel()
-        titleLabel.font = .systemFont(ofSize: 13, weight: .medium)
+        titleLabel.font = .systemFont(ofSize: 15, weight: .regular)
         titleLabel.textColor = UIColor(cgColor: CGColor(red: 93/255, green: 93/255, blue: 93/255, alpha: 1))
         addSubview(titleLabel)
 
@@ -69,12 +69,11 @@ class AuthTextField: UIView {
             textField.isSecureTextEntry = true
         }
 
-        let fontDescriptor = UIFont.systemFont(ofSize: 17).fontDescriptor.withDesign(.rounded)!
-        textField.font = UIFont(descriptor: fontDescriptor, size: 12)
+        textField.font = .systemFont(ofSize: 17)
         addSubview(textField)
 
         backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .systemThickMaterialDark))
-        backgroundView.layer.cornerRadius = 7
+        backgroundView.layer.cornerRadius = 9.5
         backgroundView.layer.cornerCurve = .continuous
         backgroundView.layer.masksToBounds = true
         insertSubview(backgroundView, at: 0)
@@ -88,14 +87,14 @@ class AuthTextField: UIView {
         }
 
         textField.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview().inset(10)
+            make.left.right.equalTo(backgroundView).inset(14)
             make.centerY.equalTo(backgroundView)
         }
 
         backgroundView.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
-            make.height.equalTo(29)
-            make.horizontalEdges.equalToSuperview()
+            make.height.equalTo(38)
+            make.width.equalTo(280)
         }
     }
 

@@ -7,18 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D6074D8F2B171E2D00FE5121 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6074D8E2B171E2D00FE5121 /* AccountViewController.swift */; };
-		D6074D952B17205E00FE5121 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6074D942B17205E00FE5121 /* AccountController.swift */; };
-		D6074D972B1720DF00FE5121 /* AccountControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6074D962B1720DF00FE5121 /* AccountControllerDelegate.swift */; };
+		D6074D8F2B171E2D00FE5121 /* AccountRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6074D8E2B171E2D00FE5121 /* AccountRegistrationViewController.swift */; };
+		D6074D952B17205E00FE5121 /* UserAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6074D942B17205E00FE5121 /* UserAccountController.swift */; };
+		D6074D972B1720DF00FE5121 /* UserAccountControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6074D962B1720DF00FE5121 /* UserAccountControllerDelegate.swift */; };
 		D619539D2B090B70008105C6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D619539C2B090B70008105C6 /* SnapKit */; };
 		D62954402B12862700629AF8 /* CallControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D629543F2B12862700629AF8 /* CallControllerDelegate.swift */; };
 		D62954432B133C9E00629AF8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D62954422B133C9E00629AF8 /* FirebaseCrashlytics */; };
-		D62B49BB2B076CAD00A0CF85 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B49BA2B076CAD00A0CF85 /* User.swift */; };
 		D63540F22B07DECB00A46AAE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D63540F12B07DECB00A46AAE /* FirebaseAuth */; };
 		D667429C2B1383EA00E75E3D /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D667429B2B1383EA00E75E3D /* AuthViewController.swift */; };
-		D68622C92B08A8550083943C /* WebRTC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68622C72B08A84F0083943C /* WebRTC.xcframework */; };
-		D68622CA2B08A8550083943C /* WebRTC.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D68622C72B08A84F0083943C /* WebRTC.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D67BA2302B21965500E9CF69 /* WebRTC in Frameworks */ = {isa = PBXBuildFile; productRef = D67BA22F2B21965500E9CF69 /* WebRTC */; };
 		D68622CE2B08CE420083943C /* AlertKit in Frameworks */ = {isa = PBXBuildFile; productRef = D68622CD2B08CE420083943C /* AlertKit */; };
+		D69484532B19B55700976194 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69484522B19B55700976194 /* UserAccount.swift */; };
 		D69722BE2B0B7029005B3DA1 /* CallToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69722BD2B0B7029005B3DA1 /* CallToolBarView.swift */; };
 		D6A47EB02B04FD1F00010B6A /* CallInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A47EAF2B04FD1F00010B6A /* CallInfoViewController.swift */; };
 		D6A49DFA2B078939003DFF05 /* usernames.json in Resources */ = {isa = PBXBuildFile; fileRef = D6A49DF92B078939003DFF05 /* usernames.json */; };
@@ -26,6 +25,7 @@
 		D6BE887B2B14A27D00BD1FD6 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE887A2B14A27D00BD1FD6 /* AuthController.swift */; };
 		D6BE887D2B14A54900BD1FD6 /* AuthControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE887C2B14A54900BD1FD6 /* AuthControllerDelegate.swift */; };
 		D6C1F1532B11EAD700E8F3DF /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C1F1522B11EAD700E8F3DF /* CallViewController.swift */; };
+		D6C808CA2B18537F001C5E19 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = D6C808C92B18537F001C5E19 /* FirebasePerformance */; };
 		D6D1BC172B014AE400BC86AB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6D1BC162B014AE400BC86AB /* GoogleService-Info.plist */; };
 		D6D389F82B094E60006CA941 /* CameraVideoCapturerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D389F72B094E60006CA941 /* CameraVideoCapturerController.swift */; };
 		D6D8D0662B0E820700E26735 /* WebRTCSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D8D0652B0E820700E26735 /* WebRTCSessionDelegate.swift */; };
@@ -53,7 +53,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D68622CA2B08A8550083943C /* WebRTC.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -61,13 +60,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D6074D8E2B171E2D00FE5121 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
-		D6074D942B17205E00FE5121 /* AccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
-		D6074D962B1720DF00FE5121 /* AccountControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountControllerDelegate.swift; sourceTree = "<group>"; };
+		D6074D8E2B171E2D00FE5121 /* AccountRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegistrationViewController.swift; sourceTree = "<group>"; };
+		D6074D942B17205E00FE5121 /* UserAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountController.swift; sourceTree = "<group>"; };
+		D6074D962B1720DF00FE5121 /* UserAccountControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountControllerDelegate.swift; sourceTree = "<group>"; };
 		D629543F2B12862700629AF8 /* CallControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallControllerDelegate.swift; sourceTree = "<group>"; };
-		D62B49BA2B076CAD00A0CF85 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D667429B2B1383EA00E75E3D /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
-		D68622C72B08A84F0083943C /* WebRTC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = WebRTC.xcframework; sourceTree = "<group>"; };
+		D69484522B19B55700976194 /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		D69722BD2B0B7029005B3DA1 /* CallToolBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallToolBarView.swift; sourceTree = "<group>"; };
 		D6A47EAF2B04FD1F00010B6A /* CallInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallInfoViewController.swift; sourceTree = "<group>"; };
 		D6A49DF92B078939003DFF05 /* usernames.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = usernames.json; sourceTree = "<group>"; };
@@ -101,11 +99,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6C808CA2B18537F001C5E19 /* FirebasePerformance in Frameworks */,
 				D68622CE2B08CE420083943C /* AlertKit in Frameworks */,
 				D6F7A91C2B00F326009262CD /* FirebaseFirestore in Frameworks */,
+				D67BA2302B21965500E9CF69 /* WebRTC in Frameworks */,
 				D63540F22B07DECB00A46AAE /* FirebaseAuth in Frameworks */,
 				D62954432B133C9E00629AF8 /* FirebaseCrashlytics in Frameworks */,
-				D68622C92B08A8550083943C /* WebRTC.xcframework in Frameworks */,
 				D619539D2B090B70008105C6 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,9 +115,9 @@
 		D6074D932B17203200FE5121 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				D6074D942B17205E00FE5121 /* AccountController.swift */,
-				D6074D962B1720DF00FE5121 /* AccountControllerDelegate.swift */,
-				D62B49BA2B076CAD00A0CF85 /* User.swift */,
+				D6074D942B17205E00FE5121 /* UserAccountController.swift */,
+				D6074D962B1720DF00FE5121 /* UserAccountControllerDelegate.swift */,
+				D69484522B19B55700976194 /* UserAccount.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -199,7 +198,7 @@
 				D6F7A8CE2B00E0EF009262CD /* AppDelegate.swift */,
 				D6F7A8D02B00E0EF009262CD /* SceneDelegate.swift */,
 				D667429B2B1383EA00E75E3D /* AuthViewController.swift */,
-				D6074D8E2B171E2D00FE5121 /* AccountViewController.swift */,
+				D6074D8E2B171E2D00FE5121 /* AccountRegistrationViewController.swift */,
 				D6F7A8D22B00E0EF009262CD /* MainViewController.swift */,
 				D6C1F1522B11EAD700E8F3DF /* CallViewController.swift */,
 				D6A47EAF2B04FD1F00010B6A /* CallInfoViewController.swift */,
@@ -219,7 +218,6 @@
 		D6F7A91A2B00F326009262CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D68622C72B08A84F0083943C /* WebRTC.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -247,6 +245,8 @@
 				D68622CD2B08CE420083943C /* AlertKit */,
 				D619539C2B090B70008105C6 /* SnapKit */,
 				D62954422B133C9E00629AF8 /* FirebaseCrashlytics */,
+				D6C808C92B18537F001C5E19 /* FirebasePerformance */,
+				D67BA22F2B21965500E9CF69 /* WebRTC */,
 			);
 			productName = Palmy;
 			productReference = D6F7A8CB2B00E0EF009262CD /* Palmy.app */;
@@ -280,6 +280,7 @@
 				D6F7A8F22B00EE89009262CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				D68622CC2B08CE420083943C /* XCRemoteSwiftPackageReference "AlertKit" */,
 				D619539B2B090B70008105C6 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				D67BA22E2B21965500E9CF69 /* XCRemoteSwiftPackageReference "WebRTC" */,
 			);
 			productRefGroup = D6F7A8CC2B00E0EF009262CD /* Products */;
 			projectDirPath = "";
@@ -311,10 +312,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6F7A8D32B00E0EF009262CD /* MainViewController.swift in Sources */,
+				D69484532B19B55700976194 /* UserAccount.swift in Sources */,
 				D6BE887B2B14A27D00BD1FD6 /* AuthController.swift in Sources */,
-				D6074D972B1720DF00FE5121 /* AccountControllerDelegate.swift in Sources */,
+				D6074D972B1720DF00FE5121 /* UserAccountControllerDelegate.swift in Sources */,
 				D69722BE2B0B7029005B3DA1 /* CallToolBarView.swift in Sources */,
-				D6074D952B17205E00FE5121 /* AccountController.swift in Sources */,
+				D6074D952B17205E00FE5121 /* UserAccountController.swift in Sources */,
 				D6BE887D2B14A54900BD1FD6 /* AuthControllerDelegate.swift in Sources */,
 				D6C1F1532B11EAD700E8F3DF /* CallViewController.swift in Sources */,
 				D6FD7F8D2B0A225300A7F832 /* WebRTCSession.swift in Sources */,
@@ -324,11 +326,10 @@
 				D667429C2B1383EA00E75E3D /* AuthViewController.swift in Sources */,
 				D6FD7F872B09FFE300A7F832 /* FirestoreSignalingServerSession.swift in Sources */,
 				D6FD7F852B09FDFC00A7F832 /* SignalingServerSession.swift in Sources */,
-				D62B49BB2B076CAD00A0CF85 /* User.swift in Sources */,
 				D6D8D0682B0E846500E26735 /* SignalingServerSessionDelegate.swift in Sources */,
 				D6D389F82B094E60006CA941 /* CameraVideoCapturerController.swift in Sources */,
 				D6E965092B0F1E8D001BFDA2 /* CallController.swift in Sources */,
-				D6074D8F2B171E2D00FE5121 /* AccountViewController.swift in Sources */,
+				D6074D8F2B171E2D00FE5121 /* AccountRegistrationViewController.swift in Sources */,
 				D6A47EB02B04FD1F00010B6A /* CallInfoViewController.swift in Sources */,
 				D6D8D0662B0E820700E26735 /* WebRTCSessionDelegate.swift in Sources */,
 				D6F7A8D12B00E0EF009262CD /* SceneDelegate.swift in Sources */,
@@ -591,6 +592,14 @@
 				minimumVersion = 5.6.0;
 			};
 		};
+		D67BA22E2B21965500E9CF69 /* XCRemoteSwiftPackageReference "WebRTC" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stasel/WebRTC";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 120.0.0;
+			};
+		};
 		D68622CC2B08CE420083943C /* XCRemoteSwiftPackageReference "AlertKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sparrowcode/AlertKit";
@@ -625,10 +634,20 @@
 			package = D6F7A8F22B00EE89009262CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
+		D67BA22F2B21965500E9CF69 /* WebRTC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D67BA22E2B21965500E9CF69 /* XCRemoteSwiftPackageReference "WebRTC" */;
+			productName = WebRTC;
+		};
 		D68622CD2B08CE420083943C /* AlertKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D68622CC2B08CE420083943C /* XCRemoteSwiftPackageReference "AlertKit" */;
 			productName = AlertKit;
+		};
+		D6C808C92B18537F001C5E19 /* FirebasePerformance */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6F7A8F22B00EE89009262CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebasePerformance;
 		};
 		D6F7A91B2B00F326009262CD /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;

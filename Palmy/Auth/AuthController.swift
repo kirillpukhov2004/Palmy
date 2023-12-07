@@ -1,15 +1,47 @@
 import OSLog
 import FirebaseAuth
 
-enum AuthControllerError: Error {
-    case invalidEmail
+enum AuthControllerError: Error, LocalizedError {
     case invalidLoginCredentials
+
+    case invalidEmail
+
     case emailAlreadyInUse
-    case wrongPassword
+
     case weakPassword
+
+    case wrongPassword
+
     case keychainError
-    case internalError
-    case unknown
+
+    case tooManyRequests
+
+    case internalError(Error)
+
+    case unknown(Error)
+
+    var errorDescription: String? {
+        switch self {
+        case .invalidLoginCredentials:
+            return "Invalid login credentials"
+        case .invalidEmail:
+            return "Invalid email"
+        case .emailAlreadyInUse:
+            return "Email already in use"
+        case .weakPassword:
+            return "Weak password"
+        case .wrongPassword:
+            return "Wrong password"
+        case .keychainError:
+            return "Keycahin error"
+        case .tooManyRequests:
+            return "Too many requests"
+        case .internalError(let error):
+            return "Internal error, \(error.localizedDescription)"
+        case .unknown(let error):
+            return"Unknown error, \(error.localizedDescription)"
+        }
+    }
 }
 
 final class AuthController {
@@ -63,10 +95,12 @@ final class AuthController {
                            message == "INVALID_LOGIN_CREDENTIALS" {
                             completionHandler(AuthControllerError.invalidLoginCredentials)
                         } else {
-                            completionHandler(AuthControllerError.internalError)
+                            completionHandler(AuthControllerError.internalError(error))
                         }
+                    case AuthErrorCode.tooManyRequests.rawValue:
+                        completionHandler(AuthControllerError.tooManyRequests)
                     default:
-                        completionHandler(AuthControllerError.unknown)
+                        completionHandler(AuthControllerError.unknown(error))
                     }
                 }
 
@@ -89,7 +123,7 @@ final class AuthController {
                     case AuthErrorCode.weakPassword.rawValue:
                         completionHandler(AuthControllerError.weakPassword)
                     default:
-                        completionHandler(AuthControllerError.unknown)
+                        completionHandler(AuthControllerError.unknown(error))
                     }
                 }
 
@@ -108,7 +142,7 @@ final class AuthController {
             case AuthErrorCode.keychainError.rawValue:
                 throw AuthControllerError.keychainError
             default:
-                throw AuthControllerError.unknown
+                throw AuthControllerError.unknown(error)
             }
         }
     }

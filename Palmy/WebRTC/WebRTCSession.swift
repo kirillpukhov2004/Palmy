@@ -4,8 +4,8 @@ import WebRTC
 
 class WebRTCSession: NSObject {
     private static let iceServers = [
-        "stun:46.19.66.12:3478",
-        "stun:46.19.66.12:3479"
+        "stun:kirillpukhov2004.ru:3478",
+        "stun:kirillpukhov2004.ru:3479"
     ]
 
     private static let defaultMediaConstraints = {
@@ -31,6 +31,7 @@ class WebRTCSession: NSObject {
     private var cameraVideoCapturerController: CameraVideoCapturerController?
 
     private var localAudioTrack: RTCAudioTrack?
+    
     private var localVideoTrack: RTCVideoTrack?
 
     private var remoteVideoTrack: RTCVideoTrack?

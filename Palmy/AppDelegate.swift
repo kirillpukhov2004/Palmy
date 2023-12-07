@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         RTCInitializeSSL()
 
         FirebaseApp.configure()
-        FirebaseConfiguration.shared.setLoggerLevel(.min)
         
         authController = AuthController()
 

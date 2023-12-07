@@ -15,7 +15,7 @@ class AuthViewController: UIViewController {
     private var signInButton: UIButton!
 
     private var tapGestureRecognizer: UITapGestureRecognizer!
-    
+
     // MARK: - Lifecycle
 
     init(authController: AuthController) {
@@ -23,7 +23,7 @@ class AuthViewController: UIViewController {
 
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -31,7 +31,7 @@ class AuthViewController: UIViewController {
     override func loadView() {
         view = UIView()
         view.backgroundColor = .systemBackground
-        
+
         setupViews()
         setupGestureRecognizers()
         setupConstraints()
@@ -50,20 +50,20 @@ class AuthViewController: UIViewController {
         loginTextField.title = "Login"
         loginTextField.delegate = self
         containerStackView.addArrangedSubview(loginTextField)
-        containerStackView.setCustomSpacing(14, after: loginTextField)
+        containerStackView.setCustomSpacing(18, after: loginTextField)
 
         passwordTextField = AuthTextField(type: .password)
         passwordTextField.title = "Password"
         passwordTextField.delegate = self
         containerStackView.addArrangedSubview(passwordTextField)
-        containerStackView.setCustomSpacing(30, after: passwordTextField)
+        containerStackView.setCustomSpacing(26, after: passwordTextField)
 
         signInButton = UIButton(type: .custom)
         signInButton.addTarget(self, action: #selector(signInButtonPressed), for: .touchUpInside)
         signInButton.setTitle("Sign In", for: .normal)
-        signInButton.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
+        signInButton.titleLabel?.font = .systemFont(ofSize: 20, weight: .semibold)
         signInButton.backgroundColor = UIColor(cgColor: CGColor(red: 23 / 255, green: 132 / 255, blue: 236 / 255, alpha: 1))
-        signInButton.layer.cornerRadius = 10
+        signInButton.layer.cornerRadius = 12.25
         signInButton.layer.cornerCurve = .continuous
         containerStackView.addArrangedSubview(signInButton)
     }
@@ -79,34 +79,39 @@ class AuthViewController: UIViewController {
         }
 
         loginTextField.snp.makeConstraints { make in
-            make.width.equalTo(255)
-            make.height.equalTo(48)
+            make.width.equalTo(280)
+            make.height.equalTo(56)
         }
 
         passwordTextField.snp.makeConstraints { make in
-            make.width.equalTo(255)
-            make.height.equalTo(48)
+            make.width.equalTo(280)
+            make.height.equalTo(56)
         }
 
         signInButton.snp.makeConstraints { make in
-            make.width.equalTo(250)
-            make.height.equalTo(40)
+            make.width.equalTo(203)
+            make.height.equalTo(47)
         }
     }
 
     private func handleError(_ error: Error) {
+        Logger.general.error("\(error.localizedDescription)")
+
+        var alertView: AlertViewProtocol?
+
         switch error {
         case AuthControllerError.invalidEmail:
-            Logger.general.error("\(error.localizedDescription)")
+            alertView = AlertAppleMusic17View(title: "Invalid email", subtitle: nil, icon: .error)
         case AuthControllerError.wrongPassword:
-            let alertView = AlertAppleMusic17View(title: "Wrong password", subtitle: nil, icon: .error)
-
-            alertView.present(on: view)
+            alertView = AlertAppleMusic17View(title: "Wrong password", subtitle: nil, icon: .error)
+        case AuthControllerError.tooManyRequests:
+            alertView = AlertAppleMusic17View(title: "Too many attempts", subtitle: nil, icon: .error)
         case AuthControllerError.invalidLoginCredentials:
             signUp()
-        default:
-            Logger.general.error("\(error.localizedDescription)")
+        default: break
         }
+
+        alertView?.present(on: view, completion: nil)
     }
 
     private func signIn() {
