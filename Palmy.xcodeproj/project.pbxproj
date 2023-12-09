@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D6074D8F2B171E2D00FE5121 /* AccountRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6074D8E2B171E2D00FE5121 /* AccountRegistrationViewController.swift */; };
 		D6074D952B17205E00FE5121 /* UserAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6074D942B17205E00FE5121 /* UserAccountController.swift */; };
 		D6074D972B1720DF00FE5121 /* UserAccountControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6074D962B1720DF00FE5121 /* UserAccountControllerDelegate.swift */; };
 		D619539D2B090B70008105C6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D619539C2B090B70008105C6 /* SnapKit */; };
@@ -16,6 +15,35 @@
 		D63540F22B07DECB00A46AAE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D63540F12B07DECB00A46AAE /* FirebaseAuth */; };
 		D667429C2B1383EA00E75E3D /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D667429B2B1383EA00E75E3D /* AuthViewController.swift */; };
 		D67BA2302B21965500E9CF69 /* WebRTC in Frameworks */ = {isa = PBXBuildFile; productRef = D67BA22F2B21965500E9CF69 /* WebRTC */; };
+		D68299DE2B2470E2000DBAD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68299DD2B2470E2000DBAD5 /* AppDelegate.swift */; };
+		D68299E02B2470E2000DBAD5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D68299DF2B2470E2000DBAD5 /* ViewController.swift */; };
+		D68299E22B2470E3000DBAD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D68299E12B2470E3000DBAD5 /* Assets.xcassets */; };
+		D68299E52B2470E3000DBAD5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D68299E32B2470E3000DBAD5 /* Main.storyboard */; };
+		D68299EB2B247309000DBAD5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D68299EA2B247309000DBAD5 /* GoogleService-Info.plist */; };
+		D68299ED2B24734B000DBAD5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D68299EC2B24734B000DBAD5 /* GoogleService-Info.plist */; };
+		D68299F02B24D24E000DBAD5 /* WebRTC in Frameworks */ = {isa = PBXBuildFile; productRef = D68299EF2B24D24E000DBAD5 /* WebRTC */; };
+		D68299F22B24D259000DBAD5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D68299F12B24D259000DBAD5 /* FirebaseAuth */; };
+		D68299F42B24D266000DBAD5 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D68299F32B24D266000DBAD5 /* FirebaseCrashlytics */; };
+		D68299F62B24D26D000DBAD5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D68299F52B24D26D000DBAD5 /* FirebaseFirestore */; };
+		D68299F82B24D281000DBAD5 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = D68299F72B24D281000DBAD5 /* FirebasePerformance */; };
+		D68299FA2B24D287000DBAD5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D68299F92B24D287000DBAD5 /* SnapKit */; };
+		D68299FC2B24D2EF000DBAD5 /* FirestoreSignalingServerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FD7F862B09FFE300A7F832 /* FirestoreSignalingServerSession.swift */; };
+		D68299FD2B24D2EF000DBAD5 /* SignalingServerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FD7F842B09FDFC00A7F832 /* SignalingServerSession.swift */; };
+		D68299FE2B24D2EF000DBAD5 /* SignalingServerSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D8D0672B0E846500E26735 /* SignalingServerSessionDelegate.swift */; };
+		D68299FF2B24D2EF000DBAD5 /* SignalingServerMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FD7F8A2B0A01E500A7F832 /* SignalingServerMessage.swift */; };
+		D6829A002B24D2F9000DBAD5 /* WebRTCSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FD7F8C2B0A225200A7F832 /* WebRTCSession.swift */; };
+		D6829A012B24D2F9000DBAD5 /* CameraVideoCapturerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D389F72B094E60006CA941 /* CameraVideoCapturerController.swift */; };
+		D6829A022B24D2F9000DBAD5 /* WebRTCSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D8D0652B0E820700E26735 /* WebRTCSessionDelegate.swift */; };
+		D6829A032B24D2FF000DBAD5 /* CallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E965082B0F1E8D001BFDA2 /* CallController.swift */; };
+		D6829A042B24D2FF000DBAD5 /* CallControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D629543F2B12862700629AF8 /* CallControllerDelegate.swift */; };
+		D6829A052B24D2FF000DBAD5 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FD7F882B0A01C000A7F832 /* Room.swift */; };
+		D6829A062B24D306000DBAD5 /* AuthControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE887C2B14A54900BD1FD6 /* AuthControllerDelegate.swift */; };
+		D6829A072B24D306000DBAD5 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE887A2B14A27D00BD1FD6 /* AuthController.swift */; };
+		D6829A082B24D30B000DBAD5 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69484522B19B55700976194 /* UserAccount.swift */; };
+		D6829A092B24D30B000DBAD5 /* UserAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6074D942B17205E00FE5121 /* UserAccountController.swift */; };
+		D6829A0A2B24D30B000DBAD5 /* UserAccountControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6074D962B1720DF00FE5121 /* UserAccountControllerDelegate.swift */; };
+		D6829A0D2B24D31A000DBAD5 /* Logger+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6829A0C2B24D319000DBAD5 /* Logger+Extensions.swift */; };
+		D6829A0E2B24D344000DBAD5 /* Logger+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6829A0C2B24D319000DBAD5 /* Logger+Extensions.swift */; };
 		D68622CE2B08CE420083943C /* AlertKit in Frameworks */ = {isa = PBXBuildFile; productRef = D68622CD2B08CE420083943C /* AlertKit */; };
 		D69484532B19B55700976194 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69484522B19B55700976194 /* UserAccount.swift */; };
 		D69722BE2B0B7029005B3DA1 /* CallToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69722BD2B0B7029005B3DA1 /* CallToolBarView.swift */; };
@@ -26,12 +54,9 @@
 		D6BE887D2B14A54900BD1FD6 /* AuthControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE887C2B14A54900BD1FD6 /* AuthControllerDelegate.swift */; };
 		D6C1F1532B11EAD700E8F3DF /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C1F1522B11EAD700E8F3DF /* CallViewController.swift */; };
 		D6C808CA2B18537F001C5E19 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = D6C808C92B18537F001C5E19 /* FirebasePerformance */; };
-		D6D1BC172B014AE400BC86AB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6D1BC162B014AE400BC86AB /* GoogleService-Info.plist */; };
 		D6D389F82B094E60006CA941 /* CameraVideoCapturerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D389F72B094E60006CA941 /* CameraVideoCapturerController.swift */; };
 		D6D8D0662B0E820700E26735 /* WebRTCSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D8D0652B0E820700E26735 /* WebRTCSessionDelegate.swift */; };
 		D6D8D0682B0E846500E26735 /* SignalingServerSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D8D0672B0E846500E26735 /* SignalingServerSessionDelegate.swift */; };
-		D6D952082B0CEB1C0061401A /* Logger+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D952072B0CEB1C0061401A /* Logger+Extensions.swift */; };
-		D6DE38282B15E12500DFA39F /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DE38272B15E12500DFA39F /* AuthTextField.swift */; };
 		D6E965092B0F1E8D001BFDA2 /* CallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E965082B0F1E8D001BFDA2 /* CallController.swift */; };
 		D6F7A8CF2B00E0EF009262CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F7A8CE2B00E0EF009262CD /* AppDelegate.swift */; };
 		D6F7A8D12B00E0EF009262CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F7A8D02B00E0EF009262CD /* SceneDelegate.swift */; };
@@ -60,11 +85,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D6074D8E2B171E2D00FE5121 /* AccountRegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegistrationViewController.swift; sourceTree = "<group>"; };
 		D6074D942B17205E00FE5121 /* UserAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountController.swift; sourceTree = "<group>"; };
 		D6074D962B1720DF00FE5121 /* UserAccountControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountControllerDelegate.swift; sourceTree = "<group>"; };
 		D629543F2B12862700629AF8 /* CallControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallControllerDelegate.swift; sourceTree = "<group>"; };
 		D667429B2B1383EA00E75E3D /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		D68299DB2B2470E2000DBAD5 /* Palmy-MacOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Palmy-MacOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D68299DD2B2470E2000DBAD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D68299DF2B2470E2000DBAD5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D68299E12B2470E3000DBAD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D68299E42B2470E3000DBAD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D68299E62B2470E3000DBAD5 /* Palmy_MacOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Palmy_MacOS.entitlements; sourceTree = "<group>"; };
+		D68299EA2B247309000DBAD5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D68299EC2B24734B000DBAD5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D6829A0C2B24D319000DBAD5 /* Logger+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Logger+Extensions.swift"; sourceTree = "<group>"; };
 		D69484522B19B55700976194 /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		D69722BD2B0B7029005B3DA1 /* CallToolBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallToolBarView.swift; sourceTree = "<group>"; };
 		D6A47EAF2B04FD1F00010B6A /* CallInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallInfoViewController.swift; sourceTree = "<group>"; };
@@ -73,14 +106,11 @@
 		D6BE887A2B14A27D00BD1FD6 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		D6BE887C2B14A54900BD1FD6 /* AuthControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthControllerDelegate.swift; sourceTree = "<group>"; };
 		D6C1F1522B11EAD700E8F3DF /* CallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
-		D6D1BC162B014AE400BC86AB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D6D389F72B094E60006CA941 /* CameraVideoCapturerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVideoCapturerController.swift; sourceTree = "<group>"; };
 		D6D8D0652B0E820700E26735 /* WebRTCSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRTCSessionDelegate.swift; sourceTree = "<group>"; };
 		D6D8D0672B0E846500E26735 /* SignalingServerSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalingServerSessionDelegate.swift; sourceTree = "<group>"; };
-		D6D952072B0CEB1C0061401A /* Logger+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Logger+Extensions.swift"; path = "Palmy/Extensions/Logger+Extensions.swift"; sourceTree = SOURCE_ROOT; };
-		D6DE38272B15E12500DFA39F /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
 		D6E965082B0F1E8D001BFDA2 /* CallController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallController.swift; sourceTree = "<group>"; };
-		D6F7A8CB2B00E0EF009262CD /* Palmy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Palmy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F7A8CB2B00E0EF009262CD /* Palmy-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Palmy-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F7A8CE2B00E0EF009262CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6F7A8D02B00E0EF009262CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D6F7A8D22B00E0EF009262CD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +125,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D68299D82B2470E2000DBAD5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D68299F42B24D266000DBAD5 /* FirebaseCrashlytics in Frameworks */,
+				D68299F62B24D26D000DBAD5 /* FirebaseFirestore in Frameworks */,
+				D68299F82B24D281000DBAD5 /* FirebasePerformance in Frameworks */,
+				D68299FA2B24D287000DBAD5 /* SnapKit in Frameworks */,
+				D68299F02B24D24E000DBAD5 /* WebRTC in Frameworks */,
+				D68299F22B24D259000DBAD5 /* FirebaseAuth in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D6F7A8C82B00E0EF009262CD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -141,10 +184,45 @@
 			path = Call;
 			sourceTree = "<group>";
 		};
+		D68299DC2B2470E2000DBAD5 /* Palmy-MacOS */ = {
+			isa = PBXGroup;
+			children = (
+				D68299DD2B2470E2000DBAD5 /* AppDelegate.swift */,
+				D68299DF2B2470E2000DBAD5 /* ViewController.swift */,
+				D68299E12B2470E3000DBAD5 /* Assets.xcassets */,
+				D68299E32B2470E3000DBAD5 /* Main.storyboard */,
+				D68299E62B2470E3000DBAD5 /* Palmy_MacOS.entitlements */,
+				D68299EC2B24734B000DBAD5 /* GoogleService-Info.plist */,
+			);
+			path = "Palmy-MacOS";
+			sourceTree = "<group>";
+		};
+		D68299EE2B24D24E000DBAD5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D68299FB2B24D2C3000DBAD5 /* Palmy */ = {
+			isa = PBXGroup;
+			children = (
+				D6E9650B2B0F1F72001BFDA2 /* SignalingServer */,
+				D6E9650A2B0F1F66001BFDA2 /* WebRTC */,
+				D667429D2B13859D00E75E3D /* Call */,
+				D667429A2B1383CA00E75E3D /* Auth */,
+				D6074D932B17203200FE5121 /* Account */,
+				D6D952092B0CEB3C0061401A /* Extensions */,
+				D6A49DF92B078939003DFF05 /* usernames.json */,
+				D6A49DFB2B078B2F003DFF05 /* emails.json */,
+			);
+			path = Palmy;
+			sourceTree = "<group>";
+		};
 		D6D952092B0CEB3C0061401A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D6D952072B0CEB1C0061401A /* Logger+Extensions.swift */,
+				D6829A0C2B24D319000DBAD5 /* Logger+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -173,61 +251,72 @@
 		D6F7A8C22B00E0EF009262CD = {
 			isa = PBXGroup;
 			children = (
-				D6F7A8CD2B00E0EF009262CD /* Palmy */,
+				D68299FB2B24D2C3000DBAD5 /* Palmy */,
+				D6F7A8CD2B00E0EF009262CD /* Palmy-iOS */,
+				D68299DC2B2470E2000DBAD5 /* Palmy-MacOS */,
 				D6F7A8CC2B00E0EF009262CD /* Products */,
-				D6F7A91A2B00F326009262CD /* Frameworks */,
+				D68299EE2B24D24E000DBAD5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		D6F7A8CC2B00E0EF009262CD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D6F7A8CB2B00E0EF009262CD /* Palmy.app */,
+				D6F7A8CB2B00E0EF009262CD /* Palmy-iOS.app */,
+				D68299DB2B2470E2000DBAD5 /* Palmy-MacOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D6F7A8CD2B00E0EF009262CD /* Palmy */ = {
+		D6F7A8CD2B00E0EF009262CD /* Palmy-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				D6E9650B2B0F1F72001BFDA2 /* SignalingServer */,
-				D6E9650A2B0F1F66001BFDA2 /* WebRTC */,
-				D667429D2B13859D00E75E3D /* Call */,
-				D667429A2B1383CA00E75E3D /* Auth */,
-				D6074D932B17203200FE5121 /* Account */,
 				D6F7A8CE2B00E0EF009262CD /* AppDelegate.swift */,
 				D6F7A8D02B00E0EF009262CD /* SceneDelegate.swift */,
 				D667429B2B1383EA00E75E3D /* AuthViewController.swift */,
-				D6074D8E2B171E2D00FE5121 /* AccountRegistrationViewController.swift */,
 				D6F7A8D22B00E0EF009262CD /* MainViewController.swift */,
 				D6C1F1522B11EAD700E8F3DF /* CallViewController.swift */,
 				D6A47EAF2B04FD1F00010B6A /* CallInfoViewController.swift */,
-				D6DE38272B15E12500DFA39F /* AuthTextField.swift */,
 				D69722BD2B0B7029005B3DA1 /* CallToolBarView.swift */,
-				D6D952092B0CEB3C0061401A /* Extensions */,
-				D6A49DF92B078939003DFF05 /* usernames.json */,
-				D6A49DFB2B078B2F003DFF05 /* emails.json */,
 				D6F7A8D72B00E0F0009262CD /* Assets.xcassets */,
 				D6F7A8D92B00E0F0009262CD /* LaunchScreen.storyboard */,
 				D6F7A8DC2B00E0F0009262CD /* Info.plist */,
-				D6D1BC162B014AE400BC86AB /* GoogleService-Info.plist */,
+				D68299EA2B247309000DBAD5 /* GoogleService-Info.plist */,
 			);
-			path = Palmy;
-			sourceTree = "<group>";
-		};
-		D6F7A91A2B00F326009262CD /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
+			path = "Palmy-iOS";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D6F7A8CA2B00E0EF009262CD /* Palmy */ = {
+		D68299DA2B2470E2000DBAD5 /* Palmy-MacOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D6F7A8DF2B00E0F0009262CD /* Build configuration list for PBXNativeTarget "Palmy" */;
+			buildConfigurationList = D68299E72B2470E3000DBAD5 /* Build configuration list for PBXNativeTarget "Palmy-MacOS" */;
+			buildPhases = (
+				D68299D72B2470E2000DBAD5 /* Sources */,
+				D68299D82B2470E2000DBAD5 /* Frameworks */,
+				D68299D92B2470E2000DBAD5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Palmy-MacOS";
+			packageProductDependencies = (
+				D68299EF2B24D24E000DBAD5 /* WebRTC */,
+				D68299F12B24D259000DBAD5 /* FirebaseAuth */,
+				D68299F32B24D266000DBAD5 /* FirebaseCrashlytics */,
+				D68299F52B24D26D000DBAD5 /* FirebaseFirestore */,
+				D68299F72B24D281000DBAD5 /* FirebasePerformance */,
+				D68299F92B24D287000DBAD5 /* SnapKit */,
+			);
+			productName = "Palmy-MacOS";
+			productReference = D68299DB2B2470E2000DBAD5 /* Palmy-MacOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D6F7A8CA2B00E0EF009262CD /* Palmy-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6F7A8DF2B00E0F0009262CD /* Build configuration list for PBXNativeTarget "Palmy-iOS" */;
 			buildPhases = (
 				D6F7A8C72B00E0EF009262CD /* Sources */,
 				D6F7A8C82B00E0EF009262CD /* Frameworks */,
@@ -238,7 +327,7 @@
 			);
 			dependencies = (
 			);
-			name = Palmy;
+			name = "Palmy-iOS";
 			packageProductDependencies = (
 				D6F7A91B2B00F326009262CD /* FirebaseFirestore */,
 				D63540F12B07DECB00A46AAE /* FirebaseAuth */,
@@ -249,7 +338,7 @@
 				D67BA22F2B21965500E9CF69 /* WebRTC */,
 			);
 			productName = Palmy;
-			productReference = D6F7A8CB2B00E0EF009262CD /* Palmy.app */;
+			productReference = D6F7A8CB2B00E0EF009262CD /* Palmy-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -262,6 +351,9 @@
 				LastSwiftUpdateCheck = 1510;
 				LastUpgradeCheck = 1510;
 				TargetAttributes = {
+					D68299DA2B2470E2000DBAD5 = {
+						CreatedOnToolsVersion = 15.1;
+					};
 					D6F7A8CA2B00E0EF009262CD = {
 						CreatedOnToolsVersion = 15.1;
 					};
@@ -286,27 +378,63 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D6F7A8CA2B00E0EF009262CD /* Palmy */,
+				D6F7A8CA2B00E0EF009262CD /* Palmy-iOS */,
+				D68299DA2B2470E2000DBAD5 /* Palmy-MacOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D68299D92B2470E2000DBAD5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D68299E22B2470E3000DBAD5 /* Assets.xcassets in Resources */,
+				D68299E52B2470E3000DBAD5 /* Main.storyboard in Resources */,
+				D68299ED2B24734B000DBAD5 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D6F7A8C92B00E0EF009262CD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D6A49DFC2B078B2F003DFF05 /* emails.json in Resources */,
 				D6F7A8DB2B00E0F0009262CD /* LaunchScreen.storyboard in Resources */,
+				D68299EB2B247309000DBAD5 /* GoogleService-Info.plist in Resources */,
 				D6F7A8D82B00E0F0009262CD /* Assets.xcassets in Resources */,
 				D6A49DFA2B078939003DFF05 /* usernames.json in Resources */,
-				D6D1BC172B014AE400BC86AB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D68299D72B2470E2000DBAD5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6829A012B24D2F9000DBAD5 /* CameraVideoCapturerController.swift in Sources */,
+				D6829A032B24D2FF000DBAD5 /* CallController.swift in Sources */,
+				D6829A052B24D2FF000DBAD5 /* Room.swift in Sources */,
+				D6829A0D2B24D31A000DBAD5 /* Logger+Extensions.swift in Sources */,
+				D6829A002B24D2F9000DBAD5 /* WebRTCSession.swift in Sources */,
+				D68299FE2B24D2EF000DBAD5 /* SignalingServerSessionDelegate.swift in Sources */,
+				D6829A0A2B24D30B000DBAD5 /* UserAccountControllerDelegate.swift in Sources */,
+				D6829A072B24D306000DBAD5 /* AuthController.swift in Sources */,
+				D6829A092B24D30B000DBAD5 /* UserAccountController.swift in Sources */,
+				D68299FF2B24D2EF000DBAD5 /* SignalingServerMessage.swift in Sources */,
+				D68299E02B2470E2000DBAD5 /* ViewController.swift in Sources */,
+				D68299FC2B24D2EF000DBAD5 /* FirestoreSignalingServerSession.swift in Sources */,
+				D6829A022B24D2F9000DBAD5 /* WebRTCSessionDelegate.swift in Sources */,
+				D6829A062B24D306000DBAD5 /* AuthControllerDelegate.swift in Sources */,
+				D68299FD2B24D2EF000DBAD5 /* SignalingServerSession.swift in Sources */,
+				D68299DE2B2470E2000DBAD5 /* AppDelegate.swift in Sources */,
+				D6829A042B24D2FF000DBAD5 /* CallControllerDelegate.swift in Sources */,
+				D6829A082B24D30B000DBAD5 /* UserAccount.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D6F7A8C72B00E0EF009262CD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -320,8 +448,8 @@
 				D6BE887D2B14A54900BD1FD6 /* AuthControllerDelegate.swift in Sources */,
 				D6C1F1532B11EAD700E8F3DF /* CallViewController.swift in Sources */,
 				D6FD7F8D2B0A225300A7F832 /* WebRTCSession.swift in Sources */,
-				D6D952082B0CEB1C0061401A /* Logger+Extensions.swift in Sources */,
 				D62954402B12862700629AF8 /* CallControllerDelegate.swift in Sources */,
+				D6829A0E2B24D344000DBAD5 /* Logger+Extensions.swift in Sources */,
 				D6F7A8CF2B00E0EF009262CD /* AppDelegate.swift in Sources */,
 				D667429C2B1383EA00E75E3D /* AuthViewController.swift in Sources */,
 				D6FD7F872B09FFE300A7F832 /* FirestoreSignalingServerSession.swift in Sources */,
@@ -329,19 +457,25 @@
 				D6D8D0682B0E846500E26735 /* SignalingServerSessionDelegate.swift in Sources */,
 				D6D389F82B094E60006CA941 /* CameraVideoCapturerController.swift in Sources */,
 				D6E965092B0F1E8D001BFDA2 /* CallController.swift in Sources */,
-				D6074D8F2B171E2D00FE5121 /* AccountRegistrationViewController.swift in Sources */,
 				D6A47EB02B04FD1F00010B6A /* CallInfoViewController.swift in Sources */,
 				D6D8D0662B0E820700E26735 /* WebRTCSessionDelegate.swift in Sources */,
 				D6F7A8D12B00E0EF009262CD /* SceneDelegate.swift in Sources */,
 				D6FD7F892B0A01C000A7F832 /* Room.swift in Sources */,
 				D6FD7F8B2B0A01E500A7F832 /* SignalingServerMessage.swift in Sources */,
-				D6DE38282B15E12500DFA39F /* AuthTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		D68299E32B2470E3000DBAD5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D68299E42B2470E3000DBAD5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		D6F7A8D92B00E0F0009262CD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -353,6 +487,68 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D68299E82B2470E3000DBAD5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Palmy-MacOS/Palmy_MacOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6797TRSMCN;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Palmy;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kirillupkhov2004.Palmy-MacOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		D68299E92B2470E3000DBAD5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Palmy-MacOS/Palmy_MacOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6797TRSMCN;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Palmy;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kirillupkhov2004.Palmy-MacOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		D6F7A8DD2B00E0F0009262CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -485,7 +681,7 @@
 					"$(PROJECT_DIR)",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Palmy/Info.plist;
+				INFOPLIST_FILE = "Palmy-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Palmy;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Palmy needs access to your camera";
@@ -502,12 +698,12 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kirillpukhov2004.Palmy;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kirillpukhov2004.Palmy-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -530,7 +726,7 @@
 					"$(PROJECT_DIR)",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Palmy/Info.plist;
+				INFOPLIST_FILE = "Palmy-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Palmy;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Palmy needs access to your camera";
@@ -547,12 +743,12 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kirillpukhov2004.Palmy;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kirillpukhov2004.Palmy-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -563,6 +759,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D68299E72B2470E3000DBAD5 /* Build configuration list for PBXNativeTarget "Palmy-MacOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D68299E82B2470E3000DBAD5 /* Debug */,
+				D68299E92B2470E3000DBAD5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D6F7A8C62B00E0EF009262CD /* Build configuration list for PBXProject "Palmy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -572,7 +777,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D6F7A8DF2B00E0F0009262CD /* Build configuration list for PBXNativeTarget "Palmy" */ = {
+		D6F7A8DF2B00E0F0009262CD /* Build configuration list for PBXNativeTarget "Palmy-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D6F7A8E02B00E0F0009262CD /* Debug */,
@@ -638,6 +843,36 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D67BA22E2B21965500E9CF69 /* XCRemoteSwiftPackageReference "WebRTC" */;
 			productName = WebRTC;
+		};
+		D68299EF2B24D24E000DBAD5 /* WebRTC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D67BA22E2B21965500E9CF69 /* XCRemoteSwiftPackageReference "WebRTC" */;
+			productName = WebRTC;
+		};
+		D68299F12B24D259000DBAD5 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6F7A8F22B00EE89009262CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		D68299F32B24D266000DBAD5 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6F7A8F22B00EE89009262CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		D68299F52B24D26D000DBAD5 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6F7A8F22B00EE89009262CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		D68299F72B24D281000DBAD5 /* FirebasePerformance */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6F7A8F22B00EE89009262CD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebasePerformance;
+		};
+		D68299F92B24D287000DBAD5 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D619539B2B090B70008105C6 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 		D68622CD2B08CE420083943C /* AlertKit */ = {
 			isa = XCSwiftPackageProductDependency;

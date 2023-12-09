@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D6F7A8CA2B00E0EF009262CD"
-               BuildableName = "Palmy.app"
-               BlueprintName = "Palmy"
+               BuildableName = "Palmy-iOS.app"
+               BlueprintName = "Palmy-iOS"
                ReferencedContainer = "container:Palmy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,8 +44,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D6F7A8CA2B00E0EF009262CD"
-            BuildableName = "Palmy.app"
-            BlueprintName = "Palmy"
+            BuildableName = "Palmy-iOS.app"
+            BlueprintName = "Palmy-iOS"
             ReferencedContainer = "container:Palmy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -56,7 +56,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-FIRDebugDisabled"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
@@ -71,8 +71,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D6F7A8CA2B00E0EF009262CD"
-            BuildableName = "Palmy.app"
-            BlueprintName = "Palmy"
+            BuildableName = "Palmy-iOS.app"
+            BlueprintName = "Palmy-iOS"
             ReferencedContainer = "container:Palmy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
